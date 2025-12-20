@@ -1,0 +1,7 @@
+{
+    "name": "devify/devify",
+    "description": "Devify Web Development Project",
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
