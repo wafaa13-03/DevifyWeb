@@ -1,0 +1,20 @@
+/* Devify theme variables (dark default) */
+:root{
+    --bg-dark:#0b0d12;
+    --bg-surface:#141824;
+    --text-primary:#f5f7ff;
+    --text-muted:#9aa4bf;
+    --accent:#8b5cf6;
+    --accent-soft:rgba(139,92,246,.2);
+  }
+  
+  /* Light mode */
+  html[data-theme="light"]{
+    --bg-dark:#f7f7fb;
+    --bg-surface:#ffffff;
+    --text-primary:#1c1e24;
+    --text-muted:#5a647a;
+    --accent:#8b5cf6;         /* keep your brand color */
+    --accent-soft:rgba(139,92,246,.18);
+  }
+  

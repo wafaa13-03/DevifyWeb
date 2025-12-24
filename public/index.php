@@ -1,4 +1,9 @@
+
+
 <?php
+
+
+
 $pageTitle = "Devify | Premium Digital Studio";
 require_once __DIR__ . "/partials/header.php";
 ?>
@@ -7,10 +12,10 @@ require_once __DIR__ . "/partials/header.php";
     <div class="container">
         <div class="row align-items-center gy-5">
             <div class="col-lg-6">
-                <p class="text-uppercase text-muted fw-semibold mb-3">Cuberto-inspired digital partner</p>
-                <h1 class="display-4 fw-bold mb-4">Dark, modern, and unforgettable digital experiences.</h1>
+                <p class="text-uppercase text-muted fw-semibold mb-3"></p>
+                <h1 class="display-4 fw-bold mb-4">Where design meets smart technology.</h1>
                 <p class="lead text-muted mb-4">
-                    Devify blends strategy, design, and engineering to launch premium products with a lasting presence.
+                    We help brands turn ideas into engaging digital products through clean UX, modern web design, and innovative solutions.
                 </p>
                 <div class="d-flex flex-wrap gap-3">
                     <a class="btn btn-accent" href="request_project.php">Request a project</a>

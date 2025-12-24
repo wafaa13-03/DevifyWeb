@@ -1,8 +1,4 @@
 <?php
-if (session_status() !== PHP_SESSION_ACTIVE) {
-    session_start();
-}
-
 $pageTitle = $pageTitle ?? "Devify";
 $isLoggedIn = isset($_SESSION["user_id"]);
 $isAdmin = ($isLoggedIn && ($_SESSION["user_role"] ?? "") === "admin");
@@ -15,6 +11,9 @@ $isAdmin = ($isLoggedIn && ($_SESSION["user_role"] ?? "") === "admin");
     <title><?= htmlspecialchars($pageTitle) ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/theme.css">
+    <script defer src="/assets/js/theme.js"></script>
+
     <style>
         :root {
             --bg-dark: #0b0d12;
@@ -24,6 +23,15 @@ $isAdmin = ($isLoggedIn && ($_SESSION["user_role"] ?? "") === "admin");
             --accent: #8b5cf6;
             --accent-soft: rgba(139, 92, 246, 0.2);
         }
+        html[data-theme="light"]{
+            --bg-dark: #f6f7fb;
+            --bg-surface: #ffffff;
+            --text-primary: #141824;
+            --text-muted: #5b647a;
+            --accent: #7c3aed;
+            --accent-soft: rgba(124, 58, 237, 0.18);
+        }
+
         body {
             font-family: "Manrope", sans-serif;
             background: var(--bg-dark);
@@ -42,11 +50,17 @@ $isAdmin = ($isLoggedIn && ($_SESSION["user_role"] ?? "") === "admin");
             padding: 120px 0 80px;
         }
         .glass-card {
+            background: var(--bg-surface);
+            border: 1px solid rgba(20, 24, 36, 0.10);
+            border-radius: 18px;
+            box-shadow: 0 18px 45px rgba(5, 7, 12, 0.18);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        html:not([data-theme="light"]) .glass-card {
             background: linear-gradient(140deg, rgba(20, 24, 36, 0.9), rgba(11, 13, 18, 0.9));
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 18px;
             box-shadow: 0 25px 60px rgba(5, 7, 12, 0.45);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .glass-card:hover {
             transform: translateY(-6px);
@@ -69,10 +83,18 @@ $isAdmin = ($isLoggedIn && ($_SESSION["user_role"] ?? "") === "admin");
             color: var(--text-muted) !important;
         }
         .form-control, .form-select {
+            background: var(--bg-surface);
+            border: 1px solid rgba(20, 24, 36, 0.12);
+            color: var(--text-primary);
+        }
+
+        html:not([data-theme="light"]) .form-control,
+        html:not([data-theme="light"]) .form-select {
             background: #10131b;
             border: 1px solid rgba(255, 255, 255, 0.12);
             color: var(--text-primary);
         }
+        
         .form-control:focus, .form-select:focus {
             border-color: var(--accent);
             box-shadow: 0 0 0 0.25rem rgba(139, 92, 246, 0.15);
@@ -123,6 +145,10 @@ $isAdmin = ($isLoggedIn && ($_SESSION["user_role"] ?? "") === "admin");
                     <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
                 <?php endif; ?>
             </ul>
+            <button class="btn btn-outline-light btn-sm ms-lg-3" id="theme-toggle" type="button">
+  Light mode
+</button>
+
         </div>
     </div>
 </nav>
