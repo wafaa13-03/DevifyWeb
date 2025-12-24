@@ -1,62 +1,62 @@
-
 <?php
-session_start();
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+require_once __DIR__ . "/partials/auth.php";
+require_login();
+require_once __DIR__ . "/../config/db.php";
 
-if (!isset($_SESSION['client_id'])) {
-    header("Location: login.php");
-    exit;
-}
+$pageTitle = "Client Dashboard | Devify";
 
-require __DIR__ . '/../vendor/autoload.php';
+$stmt = $conn->prepare("SELECT id, title, budget, timeline, status, created_at FROM project_requests WHERE user_id = ? ORDER BY created_at DESC");
+$stmt->bind_param("i", $_SESSION["user_id"]);
+$stmt->execute();
+$requests = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+$stmt->close();
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
-$dotenv->load();
-
-$host = $_ENV['DB_HOST'];
-$db   = $_ENV['DB_NAME'];
-$user = $_ENV['DB_USER'];
-$pass = $_ENV['DB_PASS'];
-
-$mysqli = new mysqli($host, $user, $pass, $db);
-
-if ($mysqli->connect_error) {
-    die("Connection failed: " . $mysqli->connect_error);
-}
-
-// Fetch projects of the logged-in client
-$client_id = $_SESSION['client_id'];
-$result = $mysqli->query("SELECT * FROM projects WHERE client_id=$client_id ORDER BY created_at DESC");
-
+require_once __DIR__ . "/partials/header.php";
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Client Dashboard</title>
-</head>
-<body>
-<h2>Welcome, <?php echo htmlspecialchars($_SESSION['client_name']); ?></h2>
-<a href="logout.php">Logout</a>
-<h3>Your Projects</h3>
-<a href="request_project.php">Request a New Project</a>
-<table border="1" cellpadding="5">
-    <tr>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Status</th>
-        <th>Created At</th>
-    </tr>
-    <?php while($project = $result->fetch_assoc()): ?>
-    <tr>
-        <td><?php echo htmlspecialchars($project['title']); ?></td>
-        <td><?php echo htmlspecialchars($project['description']); ?></td>
-        <td><?php echo htmlspecialchars($project['status']); ?></td>
-        <td><?php echo $project['created_at']; ?></td>
-    </tr>
-    <?php endwhile; ?>
-</table>
-</body>
-</html>
+<section class="section-spacing">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+            <div>
+                <h2 class="fw-bold mb-1">Welcome, <?= htmlspecialchars($_SESSION["user_name"] ?? "Client") ?>.</h2>
+                <p class="text-muted mb-0">Track your project requests and current status.</p>
+            </div>
+            <a class="btn btn-accent" href="request_project.php">New request</a>
+        </div>
+
+        <div class="glass-card p-4">
+            <div class="table-responsive">
+                <table class="table table-dark table-borderless align-middle mb-0">
+                    <thead>
+                        <tr class="text-muted">
+                            <th scope="col">Project</th>
+                            <th scope="col">Budget</th>
+                            <th scope="col">Timeline</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Submitted</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if (empty($requests)) : ?>
+                            <tr>
+                                <td colspan="5" class="text-muted">No requests yet. Submit your first project brief.</td>
+                            </tr>
+                        <?php else : ?>
+                            <?php foreach ($requests as $request) : ?>
+                                <tr>
+                                    <td><?= htmlspecialchars($request["title"]) ?></td>
+                                    <td><?= htmlspecialchars($request["budget"]) ?></td>
+                                    <td><?= htmlspecialchars($request["timeline"]) ?></td>
+                                    <td><span class="badge-status"><?= htmlspecialchars($request["status"]) ?></span></td>
+                                    <td class="text-muted"><?= htmlspecialchars(date("M d, Y", strtotime($request["created_at"]))) ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<?php require_once __DIR__ . "/partials/footer.php"; ?>

@@ -1,56 +1,70 @@
 <?php
-session_start();
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+require_once __DIR__ . "/partials/auth.php";
+require_login();
+require_once __DIR__ . "/../config/db.php";
 
-if (!isset($_SESSION['client_id'])) {
-    header("Location: login.php");
-    exit;
+$pageTitle = "Request a Project | Devify";
+$success = "";
+$error = "";
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $title = trim($_POST["title"] ?? "");
+    $budget = trim($_POST["budget"] ?? "");
+    $timeline = trim($_POST["timeline"] ?? "");
+    $details = trim($_POST["details"] ?? "");
+
+    if ($title === "" || $details === "") {
+        $error = "Please provide a project title and details.";
+    } else {
+        $stmt = $conn->prepare("INSERT INTO project_requests (user_id, title, budget, timeline, details, status) VALUES (?, ?, ?, ?, ?, 'Submitted')");
+        $stmt->bind_param("issss", $_SESSION["user_id"], $title, $budget, $timeline, $details);
+        if ($stmt->execute()) {
+            $success = "Project request submitted successfully.";
+        } else {
+            $error = "Unable to submit your request. Please try again.";
+        }
+        $stmt->close();
+    }
 }
 
-require __DIR__ . '/../vendor/autoload.php';
-
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
-$dotenv->load();
-
-$host = $_ENV['DB_HOST'];
-$db   = $_ENV['DB_NAME'];
-$user = $_ENV['DB_USER'];
-$pass = $_ENV['DB_PASS'];
-
-$mysqli = new mysqli($host, $user, $pass, $db);
-
-if ($mysqli->connect_error) {
-    die("Connection failed: " . $mysqli->connect_error);
-}
-
-$message = '';
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $title = $mysqli->real_escape_string($_POST['title']);
-    $description = $mysqli->real_escape_string($_POST['description']);
-    $client_id = $_SESSION['client_id'];
-
-    $mysqli->query("INSERT INTO projects (client_id, title, description) VALUES ($client_id, '$title', '$description')");
-    $message = "Project request submitted!";
-}
+require_once __DIR__ . "/partials/header.php";
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Request a Project</title>
-</head>
-<body>
-<h2>Request a New Project</h2>
-<a href="dashboard.php">Back to Dashboard</a>
-<?php if($message) echo "<p>$message</p>"; ?>
-<form method="post" action="">
-    Title: <input type="text" name="title" required><br><br>
-    Description:<br>
-    <textarea name="description" rows="5" cols="40" required></textarea><br><br>
-    <button type="submit">Submit Request</button>
-</form>
-</body>
-</html>
+<section class="section-spacing">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <div class="glass-card p-5">
+                    <h2 class="fw-bold mb-3">Start your next build.</h2>
+                    <p class="text-muted mb-4">Tell us about your product vision and we will respond within 24 hours.</p>
+                    <?php if ($success) : ?>
+                        <div class="alert alert-success"><?= htmlspecialchars($success) ?></div>
+                    <?php elseif ($error) : ?>
+                        <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
+                    <?php endif; ?>
+                    <form method="post">
+                        <div class="mb-3">
+                            <label class="form-label">Project name</label>
+                            <input class="form-control" name="title" placeholder="e.g. Premium SaaS redesign" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Estimated budget</label>
+                            <input class="form-control" name="budget" placeholder="$10k - $30k">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Ideal timeline</label>
+                            <input class="form-control" name="timeline" placeholder="6-8 weeks">
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label">Project details</label>
+                            <textarea class="form-control" name="details" rows="5" placeholder="Describe your goals, features, and expectations." required></textarea>
+                        </div>
+                        <button class="btn btn-accent w-100" type="submit">Submit request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<?php require_once __DIR__ . "/partials/footer.php"; ?>
