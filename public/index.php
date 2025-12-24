@@ -48,6 +48,46 @@ require_once __DIR__ . "/partials/header.php";
     </div>
 </header>
 
+<!-- What We Do -->
+<section id="what-we-do" class="py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="text-uppercase text-muted small">What we do</span>
+      <h2 class="mt-2 fw-bold">
+        Design, build, and launch modern web experiences.
+      </h2>
+      <p class="mt-3 text-muted mx-auto" style="max-width: 720px;">
+        Devify is a small studio helping startups and local businesses go from idea → live product.
+        We combine clean UI, fast development, and reliable backend systems.
+      </p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-12 col-md-4">
+        <div class="service-card h-100">
+          <h5>🎨 Web Design & UI</h5>
+          <p>Dark, modern layouts with polished interaction details.</p>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <div class="service-card h-100">
+          <h5>⚙️ Full-Stack Development</h5>
+          <p>PHP + MySQL builds with secure auth and dashboards.</p>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <div class="service-card h-100">
+          <h5>🚀 Launch & Support</h5>
+          <p>Deployment help, fixes, and iterative improvements.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <section id="services" class="section-spacing">
     <div class="container">
         <div class="row mb-5">
