@@ -1,7 +1,8 @@
 <?php
+require_once __DIR__ . "/config.php";
 require_once __DIR__ . "/../config/db.php";
 
-$pageTitle = "Register | Devify";
+$pageTitle = t("page_title_register");
 $success = "";
 $error = "";
 
@@ -11,22 +12,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $password = $_POST["password"] ?? "";
 
     if ($name === "" || $email === "" || $password === "") {
-        $error = "All fields are required.";
+        $error = t("register_error_required");
     } else {
         $check = $conn->prepare("SELECT id FROM users WHERE email = ?");
         $check->bind_param("s", $email);
         $check->execute();
         $check->store_result();
         if ($check->num_rows > 0) {
-            $error = "An account with this email already exists.";
+            $error = t("register_error_exists");
         } else {
             $hashed = password_hash($password, PASSWORD_DEFAULT);
             $stmt = $conn->prepare("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, 'client')");
             $stmt->bind_param("sss", $name, $email, $hashed);
             if ($stmt->execute()) {
-                $success = "Registration complete. You can now log in.";
+                $success = t("register_success");
             } else {
-                $error = "Registration failed. Please try again.";
+                $error = t("register_error_failed");
             }
             $stmt->close();
         }
@@ -42,8 +43,8 @@ require_once __DIR__ . "/partials/header.php";
         <div class="row justify-content-center">
             <div class="col-lg-5">
                 <div class="glass-card p-5">
-                    <h2 class="fw-bold mb-2">Create your client portal.</h2>
-                    <p class="text-muted mb-4">Join Devify to start submitting project requests.</p>
+                    <h2 class="fw-bold mb-2"><?= htmlspecialchars(t("register_heading")) ?></h2>
+                    <p class="text-muted mb-4"><?= htmlspecialchars(t("register_subheading")) ?></p>
                     <?php if ($success) : ?>
                         <div class="alert alert-success"><?= htmlspecialchars($success) ?></div>
                     <?php elseif ($error) : ?>
@@ -51,20 +52,23 @@ require_once __DIR__ . "/partials/header.php";
                     <?php endif; ?>
                     <form method="post">
                         <div class="mb-3">
-                            <label class="form-label">Full name</label>
+                            <label class="form-label"><?= htmlspecialchars(t("label_full_name")) ?></label>
                             <input class="form-control" name="name" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Email</label>
+                            <label class="form-label"><?= htmlspecialchars(t("label_email")) ?></label>
                             <input class="form-control" name="email" type="email" required>
                         </div>
                         <div class="mb-4">
-                            <label class="form-label">Password</label>
+                            <label class="form-label"><?= htmlspecialchars(t("label_password")) ?></label>
                             <input class="form-control" name="password" type="password" required>
                         </div>
-                        <button class="btn btn-accent w-100" type="submit">Register</button>
+                        <button class="btn btn-accent w-100" type="submit"><?= htmlspecialchars(t("register_button")) ?></button>
                     </form>
-                    <p class="text-muted mt-3 mb-0">Already have an account? <a href="login.php">Login</a></p>
+                    <p class="text-muted mt-3 mb-0">
+                        <?= htmlspecialchars(t("register_login_prompt")) ?>
+                        <a href="login.php"><?= htmlspecialchars(t("register_login_link")) ?></a>
+                    </p>
                 </div>
             </div>
         </div>

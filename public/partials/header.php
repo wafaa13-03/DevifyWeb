@@ -1,19 +1,19 @@
 <?php
-$pageTitle = $pageTitle ?? "Devify";
+require_once __DIR__ . "/../config.php";
+
+$pageTitle = $pageTitle ?? t("page_title_default");
 $isLoggedIn = isset($_SESSION["user_id"]);
 $isAdmin = ($isLoggedIn && ($_SESSION["user_role"] ?? "") === "admin");
+$currentLang = $lang;
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?= htmlspecialchars($currentLang) ?>" dir="<?= htmlspecialchars($dir) ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= htmlspecialchars($pageTitle) ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/theme.css">
-    <script defer src="/assets/js/theme.js"></script>
-
     <style>
         :root {
             --bg-dark: #0b0d12;
@@ -23,21 +23,16 @@ $isAdmin = ($isLoggedIn && ($_SESSION["user_role"] ?? "") === "admin");
             --accent: #8b5cf6;
             --accent-soft: rgba(139, 92, 246, 0.2);
         }
-        html[data-theme="light"]{
-            --bg-dark: #f6f7fb;
-            --bg-surface: #ffffff;
-            --text-primary: #141824;
-            --text-muted: #5b647a;
-            --accent: #7c3aed;
-            --accent-soft: rgba(124, 58, 237, 0.18);
-        }
-
         body {
             font-family: "Manrope", sans-serif;
             background: var(--bg-dark);
             color: var(--text-primary);
             min-height: 100vh;
             letter-spacing: 0.01em;
+        }
+        body.rtl {
+            direction: rtl;
+            text-align: right;
         }
         h1, h2, h3, h4, .brand {
             font-family: "Space Grotesk", sans-serif;
@@ -46,21 +41,19 @@ $isAdmin = ($isLoggedIn && ($_SESSION["user_role"] ?? "") === "admin");
             backdrop-filter: blur(12px);
             background: rgba(11, 13, 18, 0.85);
         }
+        .rtl .navbar-nav {
+            margin-right: auto !important;
+            margin-left: 0 !important;
+        }
         .hero {
             padding: 120px 0 80px;
         }
         .glass-card {
-            background: var(--bg-surface);
-            border: 1px solid rgba(20, 24, 36, 0.10);
-            border-radius: 18px;
-            box-shadow: 0 18px 45px rgba(5, 7, 12, 0.18);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        html:not([data-theme="light"]) .glass-card {
             background: linear-gradient(140deg, rgba(20, 24, 36, 0.9), rgba(11, 13, 18, 0.9));
             border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
             box-shadow: 0 25px 60px rgba(5, 7, 12, 0.45);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .glass-card:hover {
             transform: translateY(-6px);
@@ -83,18 +76,10 @@ $isAdmin = ($isLoggedIn && ($_SESSION["user_role"] ?? "") === "admin");
             color: var(--text-muted) !important;
         }
         .form-control, .form-select {
-            background: var(--bg-surface);
-            border: 1px solid rgba(20, 24, 36, 0.12);
-            color: var(--text-primary);
-        }
-
-        html:not([data-theme="light"]) .form-control,
-        html:not([data-theme="light"]) .form-select {
             background: #10131b;
             border: 1px solid rgba(255, 255, 255, 0.12);
             color: var(--text-primary);
         }
-        
         .form-control:focus, .form-select:focus {
             border-color: var(--accent);
             box-shadow: 0 0 0 0.25rem rgba(139, 92, 246, 0.15);
@@ -109,6 +94,20 @@ $isAdmin = ($isLoggedIn && ($_SESSION["user_role"] ?? "") === "admin");
             border-radius: 999px;
             font-size: 0.8rem;
         }
+        .language-toggle {
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 999px;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+        }
+        .language-toggle a {
+            padding: 4px 8px;
+            border-radius: 999px;
+        }
+        .language-toggle a.active {
+            background: rgba(139, 92, 246, 0.2);
+            color: #d9ccff;
+        }
         a {
             color: inherit;
             text-decoration: none;
@@ -121,7 +120,7 @@ $isAdmin = ($isLoggedIn && ($_SESSION["user_role"] ?? "") === "admin");
         }
     </style>
 </head>
-<body>
+<body class="<?= $isRtl ? "rtl" : "" ?>">
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container">
         <a class="navbar-brand brand fw-semibold" href="index.php">Devify</a>
@@ -129,26 +128,29 @@ $isAdmin = ($isLoggedIn && ($_SESSION["user_role"] ?? "") === "admin");
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="mainNav">
-            <ul class="navbar-nav ms-auto gap-2">
-                <li class="nav-item"><a class="nav-link" href="index.php#services">Services</a></li>
-                <li class="nav-item"><a class="nav-link" href="index.php#portfolio">Portfolio</a></li>
-                <li class="nav-item"><a class="nav-link" href="request_project.php">Request</a></li>
+            <ul class="navbar-nav ms-auto gap-2 align-items-lg-center">
+                <li class="nav-item"><a class="nav-link" href="index.php#services"><?= htmlspecialchars(t("nav_services")) ?></a></li>
+                <li class="nav-item"><a class="nav-link" href="index.php#portfolio"><?= htmlspecialchars(t("nav_portfolio")) ?></a></li>
+                <li class="nav-item"><a class="nav-link" href="request_project.php"><?= htmlspecialchars(t("nav_request")) ?></a></li>
                 <?php if ($isLoggedIn) : ?>
                     <?php if ($isAdmin) : ?>
-                        <li class="nav-item"><a class="nav-link" href="admin_dashboard.php">Admin</a></li>
+                        <li class="nav-item"><a class="nav-link" href="admin_dashboard.php"><?= htmlspecialchars(t("nav_admin")) ?></a></li>
                     <?php else : ?>
-                        <li class="nav-item"><a class="nav-link" href="dashboard.php">Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link" href="dashboard.php"><?= htmlspecialchars(t("nav_dashboard")) ?></a></li>
                     <?php endif; ?>
-                    <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
+                    <li class="nav-item"><a class="nav-link" href="logout.php"><?= htmlspecialchars(t("nav_logout")) ?></a></li>
                 <?php else : ?>
-                    <li class="nav-item"><a class="nav-link" href="register.php">Register</a></li>
-                    <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="register.php"><?= htmlspecialchars(t("nav_register")) ?></a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.php"><?= htmlspecialchars(t("nav_login")) ?></a></li>
                 <?php endif; ?>
+                <li class="nav-item">
+                    <div class="language-toggle d-flex align-items-center gap-1">
+                        <a class="<?= $currentLang === "en" ? "active" : "" ?>" href="<?= htmlspecialchars(language_url("en")) ?>">EN</a>
+                        <span class="text-muted">|</span>
+                        <a class="<?= $currentLang === "ar" ? "active" : "" ?>" href="<?= htmlspecialchars(language_url("ar")) ?>">AR</a>
+                    </div>
+                </li>
             </ul>
-            <button class="btn btn-outline-light btn-sm ms-lg-3" id="theme-toggle" type="button">
-  Light mode
-</button>
-
         </div>
     </div>
 </nav>

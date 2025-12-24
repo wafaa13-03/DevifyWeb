@@ -1,7 +1,8 @@
 <?php
+require_once __DIR__ . "/config.php";
 require_once __DIR__ . "/../config/db.php";
 
-$pageTitle = "Admin Login | Devify";
+$pageTitle = t("page_title_admin_login");
 $error = "";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -14,14 +15,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
     if ($user && $user["role"] === "admin" && password_verify($password, $user["password"])) {
-        session_start();
         $_SESSION["user_id"] = $user["id"];
         $_SESSION["user_name"] = $user["name"];
         $_SESSION["user_role"] = $user["role"];
         header("Location: admin_dashboard.php");
         exit;
     }
-    $error = "Invalid credentials.";
+    $error = t("error_invalid_credentials");
     $stmt->close();
 }
 
@@ -33,21 +33,21 @@ require_once __DIR__ . "/partials/header.php";
         <div class="row justify-content-center">
             <div class="col-lg-5">
                 <div class="glass-card p-5">
-                    <h2 class="fw-bold mb-2">Admin access</h2>
-                    <p class="text-muted mb-4">Manage incoming project requests.</p>
+                    <h2 class="fw-bold mb-2"><?= htmlspecialchars(t("admin_login_heading")) ?></h2>
+                    <p class="text-muted mb-4"><?= htmlspecialchars(t("admin_login_subheading")) ?></p>
                     <?php if ($error) : ?>
                         <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
                     <?php endif; ?>
                     <form method="post">
                         <div class="mb-3">
-                            <label class="form-label">Email</label>
+                            <label class="form-label"><?= htmlspecialchars(t("label_email")) ?></label>
                             <input class="form-control" name="email" type="email" required>
                         </div>
                         <div class="mb-4">
-                            <label class="form-label">Password</label>
+                            <label class="form-label"><?= htmlspecialchars(t("label_password")) ?></label>
                             <input class="form-control" name="password" type="password" required>
                         </div>
-                        <button class="btn btn-accent w-100" type="submit">Login</button>
+                        <button class="btn btn-accent w-100" type="submit"><?= htmlspecialchars(t("admin_login_button")) ?></button>
                     </form>
                 </div>
             </div>
