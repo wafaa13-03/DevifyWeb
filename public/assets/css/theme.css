@@ -1,20 +1,105 @@
-/* Devify theme variables (dark default) */
-:root{
-    --bg-dark:#0b0d12;
-    --bg-surface:#141824;
-    --text-primary:#f5f7ff;
-    --text-muted:#9aa4bf;
-    --accent:#8b5cf6;
-    --accent-soft:rgba(139,92,246,.2);
+:root {
+    --bg-dark: #0b0d10;
+    --bg-light: #f6f7fb;
+    --text-dark: #0b0d10;
+    --text-light: #f6f7fb;
+    --card-dark: rgba(255,255,255,0.06);
+    --card-light: rgba(0,0,0,0.05);
   }
   
-  /* Light mode */
-  html[data-theme="light"]{
-    --bg-dark:#f7f7fb;
-    --bg-surface:#ffffff;
-    --text-primary:#1c1e24;
-    --text-muted:#5a647a;
-    --accent:#8b5cf6;         /* keep your brand color */
-    --accent-soft:rgba(139,92,246,.18);
+  body.dark {
+    background: var(--bg-dark);
+    color: var(--text-light);
   }
   
+  body.light {
+    background: var(--bg-light);
+    color: var(--text-dark);
+  }
+  
+  .theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 999;
+  }
+  
+  .theme-toggle button {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: inherit;
+    padding: 8px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+/* Light mode */
+html[data-theme="light"]{
+  --bg-light:#f7f7fb;
+  --bg-surface:#ffffff;
+  --text-primary:#1c1e24;
+  --text-muted:#5a647a;
+  --accent:#8b5cf6;         /* keep your brand color */
+  --accent-soft:rgba(139,92,246,.18);
+}
+
+/* Light mode component surfaces */
+html[data-theme="light"] .glass-card{
+background: #fdfdff;
+border: 1px solid rgba(15, 23, 42, 0.08);
+box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+color: var(--text-primary);
+}
+
+html[data-theme="light"] .badge-status{
+background: rgba(139, 92, 246, 0.12);
+color: #3f2f8f;
+border-color: rgba(139, 92, 246, 0.3);
+}
+
+html[data-theme="light"] .service-card{
+background: #ffffff;
+border: 1px solid rgba(15, 23, 42, 0.08);
+color: var(--text-primary);
+}
+
+html[data-theme="light"] .service-card h5{
+color: var(--text-primary);
+}
+
+html[data-theme="light"] .service-card p{
+color: #2f3645;
+}
+/* ===============================
+   FORCE LIGHT MODE CLIENT PORTAL
+   =============================== */
+
+   html[data-theme="light"] .client-portal,
+   html[data-theme="light"] .portal-card {
+       background: #ffffff !important;
+       color: #1c1e24 !important;
+       border: 1px solid rgba(15, 23, 42, 0.08);
+       box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
+   }
+   
+   /* Headings & text */
+   html[data-theme="light"] .client-portal h1,
+   html[data-theme="light"] .client-portal h2,
+   html[data-theme="light"] .client-portal h3,
+   html[data-theme="light"] .client-portal p,
+   html[data-theme="light"] .client-portal span {
+       color: #1c1e24 !important;
+   }
+   
+   /* Stats / inner cards */
+   html[data-theme="light"] .client-portal .stat,
+   html[data-theme="light"] .client-portal .card {
+       background: #f5f6f8 !important;
+       color: #1c1e24 !important;
+   }
+   
+   /* Buttons */
+   html[data-theme="light"] .client-portal .btn {
+       background: #8b5cf6;
+       color: #ffffff;
+   }
+   

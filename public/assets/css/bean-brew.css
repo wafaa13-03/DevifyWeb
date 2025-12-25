@@ -1,0 +1,224 @@
+/* ===============================
+   ROOT & RESET
+================================= */
+:root {
+    --bg-main: #0f0f12;
+    --bg-surface: #16161c;
+    --accent: #c9a063;
+    --accent-soft: rgba(201, 160, 99, 0.25);
+    --text-primary: #f5f5f7;
+    --text-muted: #9a9aa3;
+    --radius: 18px;
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background: radial-gradient(circle at top, #181820, var(--bg-main));
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  
+  /* ===============================
+     HERO SECTION
+  ================================= */
+  .hero {
+    min-height: 100vh;
+    padding: 120px 8%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, var(--accent-soft), transparent 60%);
+    opacity: 0.15;
+    animation: pulseGlow 6s ease-in-out infinite;
+  }
+  
+  .hero h1 {
+    font-size: clamp(3rem, 6vw, 5rem);
+    letter-spacing: -1px;
+  }
+  
+  .hero p {
+    max-width: 520px;
+    margin: 20px 0 40px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  
+  /* ===============================
+     BUTTONS
+  ================================= */
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+  }
+  
+  button {
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent), #b58c4c);
+    color: #0f0f12;
+    border: none;
+    box-shadow: 0 10px 30px rgba(201,160,99,0.3);
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(201,160,99,0.5);
+  }
+  
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  
+  .btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  
+  /* ===============================
+     MENU SECTION
+  ================================= */
+  .menu {
+    padding: 100px 8%;
+  }
+  
+  .menu h2 {
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+  }
+  
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 28px;
+  }
+  
+  /* ===============================
+     MENU CARD
+  ================================= */
+  .menu-card {
+    background: linear-gradient(180deg, #1b1b22, var(--bg-surface));
+    border-radius: var(--radius);
+    padding: 28px;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    transition: var(--transition);
+  }
+  
+  .menu-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent, var(--accent-soft), transparent);
+    opacity: 0;
+    transition: var(--transition);
+  }
+  
+  .menu-card::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, rgba(255,255,255,0.4), transparent 70%);
+    filter: blur(8px);
+    transform: translateX(-50%);
+    opacity: 0;
+    animation: steam 3s infinite;
+  }
+  
+  .menu-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+  }
+  
+  .menu-card:hover::before {
+    opacity: 1;
+  }
+  
+  .menu-card:hover::after {
+    opacity: 0.6;
+  }
+  
+  /* ===============================
+     ANIMATIONS
+  ================================= */
+  @keyframes steam {
+    0% {
+      transform: translate(-50%, 0) scale(0.8);
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.6;
+    }
+    100% {
+      transform: translate(-50%, -40px) scale(1.2);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes pulseGlow {
+    0%, 100% {
+      opacity: 0.12;
+    }
+    50% {
+      opacity: 0.2;
+    }
+  }
+  
+  /* ===============================
+     SCROLL FADE-IN
+  ================================= */
+  section {
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeIn 1s ease forwards;
+    animation-delay: 0.3s;
+  }
+  
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* ===============================
+     RESPONSIVE
+  ================================= */
+  @media (max-width: 768px) {
+    .hero {
+      padding: 100px 6%;
+    }
+  
+    .hero-actions {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  
