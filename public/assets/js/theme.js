@@ -1,29 +1,28 @@
 const KEY = "devify-theme";
 
 function applyTheme(theme) {
-  if (theme === "light") {
-    document.documentElement.setAttribute("data-theme", "light");
-  } else {
-    document.documentElement.removeAttribute("data-theme");
-  }
+  document.documentElement.setAttribute("data-theme", theme);
 }
 
 function setButtonLabel(btn, theme) {
   if (!btn) return;
-  btn.textContent = theme === "light" ? "Dark mode" : "Light mode";
-  btn.setAttribute("aria-pressed", theme === "light" ? "true" : "false");
+  const isDark = theme === "dark";
+  btn.textContent = isDark ? "🌙" : "☀️";
+  btn.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+  btn.setAttribute("aria-pressed", isDark ? "true" : "false");
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("theme-toggle");
-  const saved = localStorage.getItem(KEY) || "dark";
+  const saved = localStorage.getItem(KEY);
+  const initialTheme = saved === "light" || saved === "dark" ? saved : "dark";
 
-  applyTheme(saved);
-  setButtonLabel(btn, saved);
+  applyTheme(initialTheme);
+  setButtonLabel(btn, initialTheme);
   if (btn) {
     btn.addEventListener("click", () => {
-      const isLight = document.documentElement.getAttribute("data-theme") === "light";
-      const next = isLight ? "dark" : "light";
+      const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+      const next = isDark ? "light" : "dark";
       applyTheme(next);
       localStorage.setItem(KEY, next);
       setButtonLabel(btn, next);

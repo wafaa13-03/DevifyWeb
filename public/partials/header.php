@@ -7,7 +7,7 @@ $isAdmin = ($isLoggedIn && ($_SESSION["user_role"] ?? "") === "admin");
 $currentLang = $lang;
 ?>
 <!DOCTYPE html>
-<html lang="<?= htmlspecialchars($currentLang) ?>" dir="<?= htmlspecialchars($dir) ?>">
+<html lang="<?= htmlspecialchars($currentLang) ?>" dir="<?= htmlspecialchars($dir) ?>" data-theme="dark">
 <head>
     <link rel="stylesheet" href="/assets/css/theme.css">
     <meta charset="UTF-8">
@@ -255,8 +255,8 @@ $currentLang = $lang;
                         <a class="<?= $currentLang === "en" ? "active" : "" ?>" href="<?= htmlspecialchars(language_url("en")) ?>">EN</a>
                         <span class="text-muted">|</span>
                         <a class="<?= $currentLang === "ar" ? "active" : "" ?>" href="<?= htmlspecialchars(language_url("ar")) ?>">AR</a>
-                        <button id="themeToggle" class="btn btn-sm btn-outline-light ms-2">
-                        🌙
+                        <button id="theme-toggle" class="btn btn-sm btn-outline-light ms-2" type="button" aria-label="Toggle theme">
+                            🌙
                         </button>
 
                     </div>
