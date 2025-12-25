@@ -1,0 +1,24 @@
+<svg width="960" height="540" viewBox="0 0 960 540" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="960" y2="540" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1F1A2E"/>
+      <stop offset="1" stop-color="#0D0F16"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="120" y1="120" x2="840" y2="420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#C084FC"/>
+      <stop offset="1" stop-color="#7C3AED"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="540" rx="28" fill="url(#bg)"/>
+  <rect x="72" y="70" width="816" height="72" rx="18" fill="#151A28"/>
+  <circle cx="120" cy="106" r="12" fill="#7C3AED"/>
+  <rect x="152" y="96" width="220" height="20" rx="10" fill="#2C3650"/>
+  <rect x="72" y="170" width="816" height="300" rx="24" fill="url(#accent)" opacity="0.14"/>
+  <rect x="108" y="204" width="320" height="80" rx="18" fill="#1B2233"/>
+  <rect x="108" y="300" width="230" height="60" rx="16" fill="#1B2233"/>
+  <rect x="368" y="300" width="230" height="60" rx="16" fill="#1B2233"/>
+  <rect x="108" y="384" width="490" height="56" rx="16" fill="#1B2233"/>
+  <rect x="640" y="204" width="200" height="236" rx="20" fill="#1B2233"/>
+  <text x="120" y="255" fill="#E9D5FF" font-family="Segoe UI, sans-serif" font-size="22" font-weight="600">Bean &amp; Brew</text>
+  <text x="120" y="280" fill="#BFA8FF" font-family="Segoe UI, sans-serif" font-size="14">Menu + pickup flow</text>
+</svg>
