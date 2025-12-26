@@ -304,4 +304,38 @@ require_once __DIR__ . "/partials/header.php";
     </div>
 </section>
 
+<section id="contact" class="section-spacing">
+    <div class="container">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-5">
+                <h2 class="fw-bold"><?= htmlspecialchars(t("contact_heading")) ?></h2>
+                <p class="text-muted mt-3"><?= htmlspecialchars(t("contact_subheading")) ?></p>
+            </div>
+            <div class="col-lg-7">
+                <div class="glass-card p-4 p-lg-5">
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label"><?= htmlspecialchars(t("contact_name_label")) ?></label>
+                                <input class="form-control" name="contact_name" type="text" placeholder="<?= htmlspecialchars(t("contact_name_placeholder")) ?>" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label"><?= htmlspecialchars(t("contact_email_label")) ?></label>
+                                <input class="form-control" name="contact_email" type="email" placeholder="<?= htmlspecialchars(t("contact_email_placeholder")) ?>" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label"><?= htmlspecialchars(t("contact_message_label")) ?></label>
+                                <textarea class="form-control" name="contact_message" rows="5" placeholder="<?= htmlspecialchars(t("contact_message_placeholder")) ?>" required></textarea>
+                            </div>
+                            <div class="col-12 d-flex">
+                                <button class="btn btn-accent" type="submit"><?= htmlspecialchars(t("contact_submit")) ?></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <?php require_once __DIR__ . "/partials/footer.php"; ?>
