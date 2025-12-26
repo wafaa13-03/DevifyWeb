@@ -31,13 +31,13 @@ require_once __DIR__ . "/partials/header.php";
                         <div class="col-6">
                             <div class="p-3 glass-card h-100">
                                 <p class="text-muted mb-1"><?= htmlspecialchars(t("average_delivery_label")) ?></p>
-                                <h4 class="fw-semibold mb-0">5-7 weeks</h4>
+                                <h4 class="fw-semibold mb-0"><?= htmlspecialchars(t("average_delivery_value")) ?></h4>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="p-3 glass-card h-100">
                                 <p class="text-muted mb-1"><?= htmlspecialchars(t("client_retention_label")) ?></p>
-                                <h4 class="fw-semibold mb-0">96%</h4>
+                                <h4 class="fw-semibold mb-0"><?= htmlspecialchars(t("client_retention_value")) ?></h4>
                             </div>
                         </div>
                     </div>
@@ -51,35 +51,34 @@ require_once __DIR__ . "/partials/header.php";
 <section id="what-we-do" class="py-5">
   <div class="container">
     <div class="text-center mb-5">
-      <span class="text-uppercase text-muted small">What we do</span>
+      <span class="text-uppercase text-muted small"><?= htmlspecialchars(t("what_we_do_kicker")) ?></span>
       <h2 class="mt-2 fw-bold">
-        Design, build, and launch modern web experiences.
+        <?= htmlspecialchars(t("what_we_do_title")) ?>
       </h2>
       <p class="mt-3 text-muted mx-auto" style="max-width: 720px;">
-        Devify is a small studio helping startups and local businesses go from idea → live product.
-        We combine clean UI, fast development, and reliable backend systems.
+        <?= htmlspecialchars(t("what_we_do_desc")) ?>
       </p>
     </div>
 
     <div class="row g-4">
       <div class="col-12 col-md-4">
         <div class="service-card h-100">
-          <h5>🎨 Web Design & UI</h5>
-          <p>Dark, modern layouts with polished interaction details.</p>
+          <h5><?= htmlspecialchars(t("what_we_do_card_design_title")) ?></h5>
+          <p><?= htmlspecialchars(t("what_we_do_card_design_desc")) ?></p>
         </div>
       </div>
 
       <div class="col-12 col-md-4">
         <div class="service-card h-100">
-          <h5>⚙️ Full-Stack Development</h5>
-          <p>PHP + MySQL builds with secure auth and dashboards.</p>
+          <h5><?= htmlspecialchars(t("what_we_do_card_dev_title")) ?></h5>
+          <p><?= htmlspecialchars(t("what_we_do_card_dev_desc")) ?></p>
         </div>
       </div>
 
       <div class="col-12 col-md-4">
         <div class="service-card h-100">
-          <h5>🚀 Launch & Support</h5>
-          <p>Deployment help, fixes, and iterative improvements.</p>
+          <h5><?= htmlspecialchars(t("what_we_do_card_launch_title")) ?></h5>
+          <p><?= htmlspecialchars(t("what_we_do_card_launch_desc")) ?></p>
         </div>
       </div>
     </div>
@@ -132,7 +131,7 @@ require_once __DIR__ . "/partials/header.php";
             <div class="col-lg-4">
                 <a class="portfolio-link h-100" href="#portfolio-details" data-portfolio-target="bean-brew">
                     <div class="glass-card p-4 h-100">
-                        <h5 class="fw-semibold">Bean &amp; Brew</h5>
+                        <h5 class="fw-semibold"><?= htmlspecialchars(t("portfolio_bean_title")) ?></h5>
                         <p class="text-muted mb-0"><?= htmlspecialchars(t("work_lumen_desc")) ?></p>
                     </div>
                 </a>
@@ -140,7 +139,7 @@ require_once __DIR__ . "/partials/header.php";
             <div class="col-lg-4">
                 <a class="portfolio-link h-100" href="#portfolio-details" data-portfolio-target="evoevents">
                     <div class="glass-card p-4 h-100">
-                        <h5 class="fw-semibold">EvoEvents</h5>
+                        <h5 class="fw-semibold"><?= htmlspecialchars(t("portfolio_evo_title")) ?></h5>
                         <p class="text-muted mb-0"><?= htmlspecialchars(t("work_astral_desc")) ?></p>
                     </div>
                 </a>
@@ -148,7 +147,7 @@ require_once __DIR__ . "/partials/header.php";
             <div class="col-lg-4">
                 <a class="portfolio-link h-100" href="#portfolio-details" data-portfolio-target="estateflow">
                     <div class="glass-card p-4 h-100">
-                        <h5 class="fw-semibold">EstateFlow</h5>
+                        <h5 class="fw-semibold"><?= htmlspecialchars(t("portfolio_estate_title")) ?></h5>
                         <p class="text-muted mb-0"><?= htmlspecialchars(t("work_signal_desc")) ?></p>
                     </div>
                 </a>
@@ -189,20 +188,20 @@ require_once __DIR__ . "/partials/header.php";
                     <div class="row g-3">
                         <div class="col-12">
                             <figure class="portfolio-shot">
-                                <img src="/assets/images/portfolio/bean-brew-01.png" alt="Bean &amp; Brew event builder canvas mockup">
-                                <figcaption>Event Builder Canvas</figcaption>
+                                <img src="/assets/images/portfolio/bean-brew-01.png" alt="<?= htmlspecialchars(t("portfolio_alt_builder", ["brand" => t("portfolio_bean_title")])) ?>">
+                                <figcaption><?= htmlspecialchars(t("portfolio_caption_builder")) ?></figcaption>
                             </figure>
                         </div>
                         <div class="col-6">
                             <figure class="portfolio-shot">
-                                <img src="/assets/images/portfolio/bean-brew-02.png" alt="Bean &amp; Brew vendor timeline mockup">
-                                <figcaption>Vendor Timeline</figcaption>
+                                <img src="/assets/images/portfolio/bean-brew-02.png" alt="<?= htmlspecialchars(t("portfolio_alt_timeline", ["brand" => t("portfolio_bean_title")])) ?>">
+                                <figcaption><?= htmlspecialchars(t("portfolio_caption_timeline")) ?></figcaption>
                             </figure>
                         </div>
                         <div class="col-6">
                             <figure class="portfolio-shot">
-                                <img src="/assets/images/portfolio/bean-brew-03.png" alt="Bean &amp; Brew guest overview mockup">
-                                <figcaption>Guest Overview</figcaption>
+                                <img src="/assets/images/portfolio/bean-brew-03.png" alt="<?= htmlspecialchars(t("portfolio_alt_overview", ["brand" => t("portfolio_bean_title")])) ?>">
+                                <figcaption><?= htmlspecialchars(t("portfolio_caption_overview")) ?></figcaption>
                             </figure>
                         </div>
                     </div>
@@ -235,20 +234,20 @@ require_once __DIR__ . "/partials/header.php";
                     <div class="row g-3">
                         <div class="col-12">
                             <figure class="portfolio-shot">
-                                <img src="/assets/images/portfolio/evoevents-01.png" alt="EvoEvents event builder canvas mockup">
-                                <figcaption>Event Builder Canvas</figcaption>
+                                <img src="/assets/images/portfolio/evoevents-01.png" alt="<?= htmlspecialchars(t("portfolio_alt_builder", ["brand" => t("portfolio_evo_title")])) ?>">
+                                <figcaption><?= htmlspecialchars(t("portfolio_caption_builder")) ?></figcaption>
                             </figure>
                         </div>
                         <div class="col-6">
                             <figure class="portfolio-shot">
-                                <img src="/assets/images/portfolio/evoevents-02.png" alt="EvoEvents vendor timeline mockup">
-                                <figcaption>Vendor Timeline</figcaption>
+                                <img src="/assets/images/portfolio/evoevents-02.png" alt="<?= htmlspecialchars(t("portfolio_alt_timeline", ["brand" => t("portfolio_evo_title")])) ?>">
+                                <figcaption><?= htmlspecialchars(t("portfolio_caption_timeline")) ?></figcaption>
                             </figure>
                         </div>
                         <div class="col-6">
                             <figure class="portfolio-shot">
-                                <img src="/assets/images/portfolio/evoevents-03.png" alt="EvoEvents guest overview mockup">
-                                <figcaption>Guest Overview</figcaption>
+                                <img src="/assets/images/portfolio/evoevents-03.png" alt="<?= htmlspecialchars(t("portfolio_alt_overview", ["brand" => t("portfolio_evo_title")])) ?>">
+                                <figcaption><?= htmlspecialchars(t("portfolio_caption_overview")) ?></figcaption>
                             </figure>
                         </div>
                     </div>
@@ -281,20 +280,20 @@ require_once __DIR__ . "/partials/header.php";
                     <div class="row g-3">
                         <div class="col-12">
                             <figure class="portfolio-shot">
-                                <img src="/assets/images/portfolio/estateflow-01.png" alt="EstateFlow event builder canvas mockup">
-                                <figcaption>Event Builder Canvas</figcaption>
+                                <img src="/assets/images/portfolio/estateflow-01.png" alt="<?= htmlspecialchars(t("portfolio_alt_builder", ["brand" => t("portfolio_estate_title")])) ?>">
+                                <figcaption><?= htmlspecialchars(t("portfolio_caption_builder")) ?></figcaption>
                             </figure>
                         </div>
                         <div class="col-6">
                             <figure class="portfolio-shot">
-                                <img src="/assets/images/portfolio/estateflow-02.png" alt="EstateFlow vendor timeline mockup">
-                                <figcaption>Vendor Timeline</figcaption>
+                                <img src="/assets/images/portfolio/estateflow-02.png" alt="<?= htmlspecialchars(t("portfolio_alt_timeline", ["brand" => t("portfolio_estate_title")])) ?>">
+                                <figcaption><?= htmlspecialchars(t("portfolio_caption_timeline")) ?></figcaption>
                             </figure>
                         </div>
                         <div class="col-6">
                             <figure class="portfolio-shot">
-                                <img src="/assets/images/portfolio/estateflow-03.png" alt="EstateFlow guest overview mockup">
-                                <figcaption>Guest Overview</figcaption>
+                                <img src="/assets/images/portfolio/estateflow-03.png" alt="<?= htmlspecialchars(t("portfolio_alt_overview", ["brand" => t("portfolio_estate_title")])) ?>">
+                                <figcaption><?= htmlspecialchars(t("portfolio_caption_overview")) ?></figcaption>
                             </figure>
                         </div>
                     </div>

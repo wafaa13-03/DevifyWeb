@@ -24,6 +24,7 @@ $dir = $isRtl ? "rtl" : "ltr";
 
 $translations = [
     "en" => [
+        "brand_name" => "Devify",
         "page_title_default" => "Devify",
         "page_title_home" => "Devify | Premium Digital Studio",
         "page_title_login" => "Client Login | Devify",
@@ -33,7 +34,7 @@ $translations = [
         "page_title_admin_login" => "Admin Login | Devify",
         "page_title_admin_dashboard" => "Admin Dashboard | Devify",
         "page_title_services" => "Services | Devify",
-        "nav_services" => "Services",
+        "nav_services" => "What We Offer",
         "nav_services_page" => "Services",
         "nav_portfolio" => "Portfolio",
         "nav_request" => "Request",
@@ -43,6 +44,8 @@ $translations = [
         "nav_register" => "Register",
         "nav_login" => "Login",
         "lang_toggle_label" => "Language",
+        "lang_toggle_en" => "English",
+        "lang_toggle_ar" => "Arabic",
         "hero_title" => "We don’t just build websites. We build presence.",
         "hero_lead" => "Devify blends strategy, design, and engineering to launch premium products with a lasting presence.",
         "hero_request_cta" => "Request a project",
@@ -52,7 +55,9 @@ $translations = [
         "client_portal_title" => "Track every milestone in one place.",
         "client_portal_desc" => "Stay aligned with real-time status updates, project highlights, and communication threads.",
         "average_delivery_label" => "Average delivery",
+        "average_delivery_value" => "5-7 weeks",
         "client_retention_label" => "Client retention",
+        "client_retention_value" => "96%",
         "services_heading" => "What We Offer",
         "services_desc" => "Strategic thinking, refined design, and reliable engineering — delivered with boutique attention and enterprise-level execution.",
         "services_page_heading" => "Services",
@@ -98,7 +103,7 @@ $translations = [
         "portfolio_build_label" => "How it was made",
         "portfolio_timeline_label" => "Timeline",
         "portfolio_satisfaction_label" => "Client satisfaction",
-        "portfolio_bean_title" => "Bean & Brew",
+        "portfolio_bean_title" => "بين آند برو",
         "portfolio_bean_summary" => "A refined ordering experience that keeps coffee lovers moving from menu to pickup without friction.",
         "portfolio_bean_build" => "We mapped the customer flow, created a high-contrast UI kit, and connected it to a streamlined pickup workflow so baristas could fulfill orders in seconds.",
         "portfolio_bean_timeline" => "6 weeks from discovery to launch",
@@ -116,6 +121,12 @@ $translations = [
         "portfolio_estate_timeline" => "7 weeks from kickoff to rollout",
         "portfolio_estate_satisfaction" => "96% satisfaction from property ops teams",
         "work_signal_desc" => "A modern system designed to manage properties, tenants, and operations efficiently",
+        "portfolio_caption_builder" => "Event Builder Canvas",
+        "portfolio_caption_timeline" => "Vendor Timeline",
+        "portfolio_caption_overview" => "Guest Overview",
+        "portfolio_alt_builder" => "{brand} event builder canvas mockup",
+        "portfolio_alt_timeline" => "{brand} vendor timeline mockup",
+        "portfolio_alt_overview" => "{brand} guest overview mockup",
         "footer_heading" => "Ready to build your next release?",
         "footer_desc" => "Partner with Devify for a premium digital experience.",
         "footer_cta" => "Start a project",
@@ -156,11 +167,12 @@ $translations = [
         "contact_name_label" => "Name",
         "contact_name_placeholder" => "Your full name",
         "contact_email_label" => "Email",
-        "contact_email_placeholder" => "you@example.com",
+        "contact_email_placeholder" => "بريدك@الموقع.كوم",
         "contact_message_label" => "Message",
         "contact_message_placeholder" => "Share a quick summary of what you need.",
         "contact_submit" => "Send message",
         "dashboard_welcome" => "Welcome, {name}.",
+        "dashboard_client_fallback" => "Client",
         "dashboard_subheading" => "Track your project requests and current status.",
         "dashboard_new_request" => "New request",
         "dashboard_table_project" => "Project",
@@ -190,6 +202,7 @@ $translations = [
         "status_completed" => "Completed"
     ],
     "ar" => [
+        "brand_name" => "ديفاي",
         "page_title_default" => "ديفاي",
         "page_title_home" => "ديفاي | استوديو رقمي فاخر",
         "page_title_login" => "تسجيل دخول العملاء | ديفاي",
@@ -199,7 +212,7 @@ $translations = [
         "page_title_admin_login" => "تسجيل دخول الإدارة | ديفاي",
         "page_title_admin_dashboard" => "لوحة تحكم الإدارة | ديفاي",
         "page_title_services" => "الخدمات | ديفاي",
-        "nav_services" => "الخدمات",
+        "nav_services" => "ما نقدمه",
         "nav_services_page" => "الخدمات",
         "nav_portfolio" => "الأعمال",
         "nav_request" => "طلب مشروع",
@@ -209,6 +222,8 @@ $translations = [
         "nav_register" => "إنشاء حساب",
         "nav_login" => "تسجيل الدخول",
         "lang_toggle_label" => "اللغة",
+        "lang_toggle_en" => "الإنجليزية",
+        "lang_toggle_ar" => "العربية",
         "hero_title" => "تجارب رقمية داكنة وعصرية لا تُنسى.",
         "hero_lead" => "تمزج ديفاي بين الاستراتيجية والتصميم والهندسة لإطلاق منتجات فاخرة بحضور يدوم.",
         "hero_request_cta" => "اطلب مشروعًا",
@@ -218,7 +233,9 @@ $translations = [
         "client_portal_title" => "تابع كل مرحلة في مكان واحد.",
         "client_portal_desc" => "ابقَ على اطلاع بتحديثات الحالة الفورية وأبرز المراحل وخيوط التواصل.",
         "average_delivery_label" => "متوسط التسليم",
+        "average_delivery_value" => "٥-٧ أسابيع",
         "client_retention_label" => "الاحتفاظ بالعملاء",
+        "client_retention_value" => "٩٦٪",
         "services_heading" => "ما نقدمه",
         "services_desc" => "تفكير استراتيجي وتصميم متقن وهندسة موثوقة — مع اهتمام بوتيكي وتنفيذ بمستوى مؤسسي.",
         "services_page_heading" => "الخدمات",
@@ -247,7 +264,7 @@ $translations = [
         "what_we_do_card_design_title" => "🎨 تصميم الويب وتجربة المستخدم",
         "what_we_do_card_design_desc" => "تصاميم داكنة وعصرية مع تفاصيل تفاعل مصقولة.",
         "what_we_do_card_dev_title" => "⚙️ تطوير متكامل",
-        "what_we_do_card_dev_desc" => "بناءات PHP + MySQL مع مصادقة آمنة ولوحات تحكم.",
+        "what_we_do_card_dev_desc" => "بناءات بي إتش بي + ماي إس كيو إل مع مصادقة آمنة ولوحات تحكم.",
         "what_we_do_card_launch_title" => "🚀 الإطلاق والدعم",
         "what_we_do_card_launch_desc" => "مساعدة في النشر والإصلاحات والتحسينات المستمرة.",
         "service_strategy_title" => "توجيه المنتج",
@@ -264,24 +281,30 @@ $translations = [
         "portfolio_build_label" => "طريقة التنفيذ",
         "portfolio_timeline_label" => "المدة الزمنية",
         "portfolio_satisfaction_label" => "رضا العملاء",
-        "portfolio_bean_title" => "Bean & Brew",
+        "portfolio_bean_title" => "بين آند برو",
         "portfolio_bean_summary" => "تجربة طلب أنيقة تنقل العملاء من القائمة إلى الاستلام بسلاسة.",
         "portfolio_bean_build" => "حددنا رحلة العميل، وأنشأنا نظام واجهة عالي التباين، وربطناه بسير عمل سريع للطلبات.",
-        "portfolio_bean_timeline" => "6 أسابيع من الاكتشاف حتى الإطلاق",
-        "portfolio_bean_satisfaction" => "نسبة رضا 97٪ من المتاجر التجريبية",
+        "portfolio_bean_timeline" => "٦ أسابيع من الاكتشاف حتى الإطلاق",
+        "portfolio_bean_satisfaction" => "نسبة رضا ٩٧٪ من المتاجر التجريبية",
         "work_lumen_desc" => "تجربة طلب إلكترونية سلسة لخدمة سريعة ولحظات قهوة رائعة.",
-        "portfolio_evo_title" => "EvoEvents",
+        "portfolio_evo_title" => "إيفو إيفنتس",
         "portfolio_evo_summary" => "منصة تخطيط فعاليات تفاعلية مع جدولة وتعاون واضح.",
         "portfolio_evo_build" => "صممنا لوحة تخطيط تفاعلية وبنينا نظام مهام تعاوني ولوحة تحكم أنيقة للمنظمين.",
-        "portfolio_evo_timeline" => "8 أسابيع مع عروض أسبوعية لأصحاب المصلحة",
-        "portfolio_evo_satisfaction" => "نسبة رضا 94٪ من منظمي النسخة التجريبية",
+        "portfolio_evo_timeline" => "٨ أسابيع مع عروض أسبوعية لأصحاب المصلحة",
+        "portfolio_evo_satisfaction" => "نسبة رضا ٩٤٪ من منظمي النسخة التجريبية",
         "work_astral_desc" => "منصة تفاعلية لتخطيط الفعاليات تحول الأفكار إلى تجارب لا تُنسى.",
-        "portfolio_estate_title" => "EstateFlow",
+        "portfolio_estate_title" => "إستيت فلو",
         "portfolio_estate_summary" => "منصة موحدة لإدارة العقارات والمدفوعات والصيانة.",
         "portfolio_estate_build" => "جمعنا تتبع العقود والطلبات والتقارير في لوحة واحدة مع صلاحيات للأدوار المختلفة.",
-        "portfolio_estate_timeline" => "7 أسابيع من البداية حتى الإطلاق",
-        "portfolio_estate_satisfaction" => "نسبة رضا 96٪ من فرق التشغيل",
+        "portfolio_estate_timeline" => "٧ أسابيع من البداية حتى الإطلاق",
+        "portfolio_estate_satisfaction" => "نسبة رضا ٩٦٪ من فرق التشغيل",
         "work_signal_desc" => "نظام حديث لإدارة العقارات والمستأجرين والعمليات بكفاءة.",
+        "portfolio_caption_builder" => "لوحة بناء الفعاليات",
+        "portfolio_caption_timeline" => "الجدول الزمني للموردين",
+        "portfolio_caption_overview" => "نظرة عامة على الضيوف",
+        "portfolio_alt_builder" => "نموذج واجهة {brand} لبناء الفعاليات",
+        "portfolio_alt_timeline" => "نموذج واجهة {brand} للجدول الزمني للموردين",
+        "portfolio_alt_overview" => "نموذج واجهة {brand} لنظرة الضيوف",
         "footer_heading" => "هل أنت مستعد لبناء الإصدار القادم؟",
         "footer_desc" => "تعاون مع ديفاي لتجربة رقمية فاخرة.",
         "footer_cta" => "ابدأ مشروعًا",
@@ -309,11 +332,11 @@ $translations = [
         "request_error" => "يرجى إدخال عنوان المشروع والتفاصيل.",
         "request_error_failed" => "تعذر إرسال طلبك. يرجى المحاولة مرة أخرى.",
         "request_title_label" => "اسم المشروع",
-        "request_title_placeholder" => "مثال: إعادة تصميم SaaS فاخرة",
+        "request_title_placeholder" => "مثال: إعادة تصميم منصة برمجيات كخدمة فاخرة",
         "request_budget_label" => "الميزانية المتوقعة",
-        "request_budget_placeholder" => "$10k - $30k",
+        "request_budget_placeholder" => "١٠ آلاف دولار - ٣٠ ألف دولار",
         "request_timeline_label" => "الجدول الزمني المثالي",
-        "request_timeline_placeholder" => "6-8 أسابيع",
+        "request_timeline_placeholder" => "٦-٨ أسابيع",
         "request_details_label" => "تفاصيل المشروع",
         "request_details_placeholder" => "صف أهدافك وميزاتك وتوقعاتك.",
         "request_submit_button" => "إرسال الطلب",
@@ -322,11 +345,12 @@ $translations = [
         "contact_name_label" => "الاسم",
         "contact_name_placeholder" => "الاسم الكامل",
         "contact_email_label" => "البريد الإلكتروني",
-        "contact_email_placeholder" => "you@example.com",
+        "contact_email_placeholder" => "بريدك@الموقع.com",
         "contact_message_label" => "الرسالة",
         "contact_message_placeholder" => "اكتب ملخصًا سريعًا لما تحتاجه.",
         "contact_submit" => "إرسال الرسالة",
         "dashboard_welcome" => "مرحبًا، {name}.",
+        "dashboard_client_fallback" => "العميل",
         "dashboard_subheading" => "تابع طلبات مشاريعك وحالتها الحالية.",
         "dashboard_new_request" => "طلب جديد",
         "dashboard_table_project" => "المشروع",
@@ -357,12 +381,48 @@ $translations = [
     ]
 ];
 
+function localize_digits(string $text): string
+{
+    $arabicDigits = ["٠", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩"];
+    return str_replace(range("0", "9"), $arabicDigits, $text);
+}
+
+function format_date(string $dateString): string
+{
+    global $lang;
+    $date = new DateTime($dateString);
+
+    if ($lang === "ar") {
+        $months = [
+            1 => "يناير",
+            2 => "فبراير",
+            3 => "مارس",
+            4 => "أبريل",
+            5 => "مايو",
+            6 => "يونيو",
+            7 => "يوليو",
+            8 => "أغسطس",
+            9 => "سبتمبر",
+            10 => "أكتوبر",
+            11 => "نوفمبر",
+            12 => "ديسمبر",
+        ];
+        $month = $months[(int) $date->format("n")] ?? $date->format("M");
+        return localize_digits($month . " " . $date->format("d, Y"));
+    }
+
+    return $date->format("M d, Y");
+}
+
 function t(string $key, array $replace = []): string
 {
     global $translations, $lang;
     $text = $translations[$lang][$key] ?? $translations["en"][$key] ?? $key;
     foreach ($replace as $placeholder => $value) {
         $text = str_replace("{" . $placeholder . "}", (string) $value, $text);
+    }
+    if ($lang === "ar") {
+        $text = localize_digits($text);
     }
     return $text;
 }

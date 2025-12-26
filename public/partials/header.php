@@ -101,6 +101,9 @@ $currentLang = $lang;
             margin-right: auto !important;
             margin-left: 0 !important;
         }
+        .rtl .language-toggle {
+            flex-direction: row-reverse;
+        }
         .rtl .package-features li {
             flex-direction: row-reverse;
         }
@@ -233,7 +236,7 @@ $currentLang = $lang;
 <body class="<?= $isRtl ? "rtl" : "" ?>">
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container">
-        <a class="navbar-brand brand fw-semibold" href="index.php">Devify</a>
+        <a class="navbar-brand brand fw-semibold" href="index.php"><?= htmlspecialchars(t("brand_name")) ?></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -256,9 +259,9 @@ $currentLang = $lang;
                 <?php endif; ?>
                 <li class="nav-item">
                     <div class="language-toggle d-flex align-items-center gap-1">
-                        <a class="<?= $currentLang === "en" ? "active" : "" ?>" href="<?= htmlspecialchars(language_url("en")) ?>">EN</a>
+                        <a class="<?= $currentLang === "en" ? "active" : "" ?>" data-lang="en" href="<?= htmlspecialchars(language_url("en")) ?>"><?= htmlspecialchars(t("lang_toggle_en")) ?></a>
                         <span class="text-muted">|</span>
-                        <a class="<?= $currentLang === "ar" ? "active" : "" ?>" href="<?= htmlspecialchars(language_url("ar")) ?>">AR</a>
+                        <a class="<?= $currentLang === "ar" ? "active" : "" ?>" data-lang="ar" href="<?= htmlspecialchars(language_url("ar")) ?>"><?= htmlspecialchars(t("lang_toggle_ar")) ?></a>
                         <button id="theme-toggle" class="btn btn-sm btn-outline-light ms-2" type="button" aria-label="Toggle theme">
                             🌙
                         </button>

@@ -1,4 +1,5 @@
 const KEY = "devify-theme";
+const LANG_KEY = "devify-lang";
 
 function applyTheme(theme) {
   document.documentElement.setAttribute("data-theme", theme);
@@ -13,6 +14,32 @@ function setButtonLabel(btn, theme) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  const htmlLang = document.documentElement.getAttribute("lang") || "en";
+  const savedLang = localStorage.getItem(LANG_KEY);
+  const targetLang = savedLang === "ar" || savedLang === "en" ? savedLang : "en";
+  const langLinks = document.querySelectorAll("[data-lang]");
+
+  if (!savedLang) {
+    localStorage.setItem(LANG_KEY, targetLang);
+  }
+
+  if (targetLang !== htmlLang) {
+    const targetLink = document.querySelector(`[data-lang="${targetLang}"]`);
+    if (targetLink) {
+      window.location.href = targetLink.getAttribute("href");
+      return;
+    }
+  }
+
+  langLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      const nextLang = link.getAttribute("data-lang");
+      if (nextLang) {
+        localStorage.setItem(LANG_KEY, nextLang);
+      }
+    });
+  });
+
   const btn = document.getElementById("theme-toggle");
   const saved = localStorage.getItem(KEY);
   const initialTheme = saved === "light" || saved === "dark" ? saved : "dark";
