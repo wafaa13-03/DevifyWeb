@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION["user_id"] = $user["id"];
         $_SESSION["user_name"] = $user["name"];
         $_SESSION["user_role"] = $user["role"];
-        header("Location: admin_dashboard.php");
+        header("Location: admin/dashboard.php");
         exit;
     }
     $error = t("error_invalid_credentials");
