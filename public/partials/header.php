@@ -101,6 +101,9 @@ $currentLang = $lang;
             margin-right: auto !important;
             margin-left: 0 !important;
         }
+        .rtl .package-features li {
+            flex-direction: row-reverse;
+        }
         .hero {
             padding: 120px 0 80px;
         }
@@ -237,6 +240,7 @@ $currentLang = $lang;
         <div class="collapse navbar-collapse" id="mainNav">
             <ul class="navbar-nav ms-auto gap-2 align-items-lg-center">
                 <li class="nav-item"><a class="nav-link" href="index.php#services"><?= htmlspecialchars(t("nav_services")) ?></a></li>
+                <li class="nav-item"><a class="nav-link" href="services.php"><?= htmlspecialchars(t("nav_services_page")) ?></a></li>
                 <li class="nav-item"><a class="nav-link" href="index.php#portfolio"><?= htmlspecialchars(t("nav_portfolio")) ?></a></li>
                 <li class="nav-item"><a class="nav-link" href="request_project.php"><?= htmlspecialchars(t("nav_request")) ?></a></li>
                 <?php if ($isLoggedIn) : ?>
