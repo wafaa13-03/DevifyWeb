@@ -56,26 +56,55 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  const portfolioLinks = document.querySelectorAll("[data-portfolio-target]");
-  const portfolioDetails = document.querySelectorAll(".portfolio-detail");
-  const portfolioSection = document.getElementById("portfolio-details");
+  const previewButtons = document.querySelectorAll(".portfolio-preview-btn");
+  const modal = document.getElementById("portfolio-preview");
+  const modalTitle = document.getElementById("portfolio-preview-title");
+  const modalLink = document.getElementById("portfolio-preview-link");
+  const closeButton = modal ? modal.querySelector(".portfolio-modal__close") : null;
 
-  if (portfolioLinks.length && portfolioDetails.length && portfolioSection) {
-    portfolioDetails.forEach((detail) => detail.classList.remove("is-active"));
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    if (modalLink) {
+      modalLink.setAttribute("href", "#");
+    }
+    document.body.classList.remove("modal-open");
+  }
 
-    portfolioLinks.forEach((link) => {
-      link.addEventListener("click", (event) => {
-        event.preventDefault();
-        const targetId = link.getAttribute("data-portfolio-target");
-        if (!targetId) return;
+  if (previewButtons.length && modal) {
+    previewButtons.forEach((btnEl) => {
+      btnEl.addEventListener("click", () => {
+        const url = btnEl.getAttribute("data-preview-url");
+        const title = btnEl.getAttribute("data-preview-title");
+        if (!url) return;
 
-        const target = document.getElementById(targetId);
-        if (!target) return;
-
-        portfolioDetails.forEach((detail) => detail.classList.remove("is-active"));
-        target.classList.add("is-active");
-        portfolioSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        if (modalTitle && title) {
+          modalTitle.textContent = title;
+        }
+        if (modalLink) {
+          modalLink.setAttribute("href", url);
+        }
+        modal.classList.add("is-open");
+        modal.setAttribute("aria-hidden", "false");
+        document.body.classList.add("modal-open");
       });
+    });
+
+    if (closeButton) {
+      closeButton.addEventListener("click", closeModal);
+    }
+
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && modal.classList.contains("is-open")) {
+        closeModal();
+      }
     });
   }
 });

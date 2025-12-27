@@ -129,179 +129,59 @@ require_once __DIR__ . "/partials/header.php";
         </div>
         <div class="row g-4">
             <div class="col-lg-4">
-                <a class="portfolio-link h-100" href="#portfolio-details" data-portfolio-target="bean-brew">
-                    <div class="glass-card p-4 h-100">
-                        <h5 class="fw-semibold"><?= htmlspecialchars(t("portfolio_bean_title")) ?></h5>
-                        <p class="text-muted mb-0"><?= htmlspecialchars(t("work_lumen_desc")) ?></p>
+                <div class="glass-card p-4 h-100 portfolio-card">
+                    <div class="portfolio-media">
+                        <img src="/assets/mockups/bean-brew-website.png" alt="<?= htmlspecialchars(t("portfolio_bean_title")) ?>">
                     </div>
-                </a>
+                    <h5 class="fw-semibold mt-3"><?= htmlspecialchars(t("portfolio_bean_title")) ?></h5>
+                    <p class="text-muted mb-3"><?= htmlspecialchars(t("portfolio_bean_preview_desc")) ?></p>
+                    <button class="btn btn-outline-light w-100 portfolio-preview-btn" type="button" data-preview-title="<?= htmlspecialchars(t("portfolio_bean_title")) ?>" data-preview-url="https://www.figma.com/make/34vknHr54iMJIxmrObD6Cr/Coffee-Shop-Website?p=f&t=K4Q3WnZdPdVXF0DQ-0&fullscreen=1">
+                        <?= htmlspecialchars(t("portfolio_preview_button")) ?>
+                    </button>
+                </div>
             </div>
             <div class="col-lg-4">
-                <a class="portfolio-link h-100" href="#portfolio-details" data-portfolio-target="evoevents">
-                    <div class="glass-card p-4 h-100">
-                        <h5 class="fw-semibold"><?= htmlspecialchars(t("portfolio_evo_title")) ?></h5>
-                        <p class="text-muted mb-0"><?= htmlspecialchars(t("work_astral_desc")) ?></p>
+                <div class="glass-card p-4 h-100 portfolio-card">
+                    <div class="portfolio-media">
+                        <img src="/assets/mockups/evoevents-website.png" alt="<?= htmlspecialchars(t("portfolio_evo_title")) ?>">
                     </div>
-                </a>
+                    <h5 class="fw-semibold mt-3"><?= htmlspecialchars(t("portfolio_evo_title")) ?></h5>
+                    <p class="text-muted mb-3"><?= htmlspecialchars(t("portfolio_evo_preview_desc")) ?></p>
+                    <button class="btn btn-outline-light w-100 portfolio-preview-btn" type="button" data-preview-title="<?= htmlspecialchars(t("portfolio_evo_title")) ?>" data-preview-url="https://www.figma.com/make/4xqCtqlTI2p1n10GJJpviH/Coffee-Shop-Website?p=f&t=C7VrUezB1UQgRJ3r-0&fullscreen=1">
+                        <?= htmlspecialchars(t("portfolio_preview_button")) ?>
+                    </button>
+                </div>
             </div>
             <div class="col-lg-4">
-                <a class="portfolio-link h-100" href="#portfolio-details" data-portfolio-target="estateflow">
-                    <div class="glass-card p-4 h-100">
-                        <h5 class="fw-semibold"><?= htmlspecialchars(t("portfolio_estate_title")) ?></h5>
-                        <p class="text-muted mb-0"><?= htmlspecialchars(t("work_signal_desc")) ?></p>
+                <div class="glass-card p-4 h-100 portfolio-card">
+                    <div class="portfolio-media">
+                        <img src="/assets/mockups/estateflow-website.png" alt="<?= htmlspecialchars(t("portfolio_estate_title")) ?>">
                     </div>
-                </a>
+                    <h5 class="fw-semibold mt-3"><?= htmlspecialchars(t("portfolio_estate_title")) ?></h5>
+                    <p class="text-muted mb-3"><?= htmlspecialchars(t("portfolio_estate_preview_desc")) ?></p>
+                    <button class="btn btn-outline-light w-100 portfolio-preview-btn" type="button" data-preview-title="<?= htmlspecialchars(t("portfolio_estate_title")) ?>" data-preview-url="https://www.figma.com/make/uMpoZgf9oY5cKL5U5saUbX/EstateFlow-Management-Hub?p=f&t=i4SO8lhXpt9xPw1A-0&fullscreen=1">
+                        <?= htmlspecialchars(t("portfolio_preview_button")) ?>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<section id="portfolio-details" class="section-spacing">
-    <div class="container">
-        <div class="text-center mb-5">
-            <span class="text-uppercase text-muted small"><?= htmlspecialchars(t("portfolio_details_heading")) ?></span>
-            <h2 class="mt-2 fw-bold"><?= htmlspecialchars(t("portfolio_details_intro")) ?></h2>
+<div class="portfolio-modal" id="portfolio-preview" aria-hidden="true">
+    <div class="portfolio-modal__dialog">
+        <div class="portfolio-modal__header">
+            <h4 class="mb-0" id="portfolio-preview-title"></h4>
+            <button class="portfolio-modal__close" type="button" aria-label="<?= htmlspecialchars(t("portfolio_preview_close")) ?>">×</button>
         </div>
-
-        <div id="bean-brew" class="glass-card p-4 p-lg-5 mb-4 portfolio-detail">
-            <div class="row gy-4 align-items-center">
-                <div class="col-lg-6">
-                    <h3 class="fw-bold mb-3"><?= htmlspecialchars(t("portfolio_bean_title")) ?></h3>
-                    <p class="text-muted mb-4"><?= htmlspecialchars(t("portfolio_bean_summary")) ?></p>
-                    <div class="portfolio-meta">
-                        <p class="text-uppercase text-muted small mb-2"><?= htmlspecialchars(t("portfolio_build_label")) ?></p>
-                        <p class="text-muted mb-4"><?= htmlspecialchars(t("portfolio_bean_build")) ?></p>
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <p class="text-uppercase text-muted small mb-1"><?= htmlspecialchars(t("portfolio_timeline_label")) ?></p>
-                                <p class="fw-semibold mb-0"><?= htmlspecialchars(t("portfolio_bean_timeline")) ?></p>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="text-uppercase text-muted small mb-1"><?= htmlspecialchars(t("portfolio_satisfaction_label")) ?></p>
-                                <p class="fw-semibold mb-0"><?= htmlspecialchars(t("portfolio_bean_satisfaction")) ?></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <p class="text-uppercase text-muted small mb-3"><?= htmlspecialchars(t("portfolio_gallery_label")) ?></p>
-                    <div class="row g-3">
-                        <div class="col-12">
-                            <figure class="portfolio-shot">
-                                <img src="/assets/images/portfolio/bean-brew-01.png" alt="<?= htmlspecialchars(t("portfolio_alt_builder", ["brand" => t("portfolio_bean_title")])) ?>">
-                                <figcaption><?= htmlspecialchars(t("portfolio_caption_builder")) ?></figcaption>
-                            </figure>
-                        </div>
-                        <div class="col-6">
-                            <figure class="portfolio-shot">
-                                <img src="/assets/images/portfolio/bean-brew-02.png" alt="<?= htmlspecialchars(t("portfolio_alt_timeline", ["brand" => t("portfolio_bean_title")])) ?>">
-                                <figcaption><?= htmlspecialchars(t("portfolio_caption_timeline")) ?></figcaption>
-                            </figure>
-                        </div>
-                        <div class="col-6">
-                            <figure class="portfolio-shot">
-                                <img src="/assets/images/portfolio/bean-brew-03.png" alt="<?= htmlspecialchars(t("portfolio_alt_overview", ["brand" => t("portfolio_bean_title")])) ?>">
-                                <figcaption><?= htmlspecialchars(t("portfolio_caption_overview")) ?></figcaption>
-                            </figure>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="evoevents" class="glass-card p-4 p-lg-5 mb-4 portfolio-detail">
-            <div class="row gy-4 align-items-center">
-                <div class="col-lg-6">
-                    <h3 class="fw-bold mb-3"><?= htmlspecialchars(t("portfolio_evo_title")) ?></h3>
-                    <p class="text-muted mb-4"><?= htmlspecialchars(t("portfolio_evo_summary")) ?></p>
-                    <div class="portfolio-meta">
-                        <p class="text-uppercase text-muted small mb-2"><?= htmlspecialchars(t("portfolio_build_label")) ?></p>
-                        <p class="text-muted mb-4"><?= htmlspecialchars(t("portfolio_evo_build")) ?></p>
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <p class="text-uppercase text-muted small mb-1"><?= htmlspecialchars(t("portfolio_timeline_label")) ?></p>
-                                <p class="fw-semibold mb-0"><?= htmlspecialchars(t("portfolio_evo_timeline")) ?></p>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="text-uppercase text-muted small mb-1"><?= htmlspecialchars(t("portfolio_satisfaction_label")) ?></p>
-                                <p class="fw-semibold mb-0"><?= htmlspecialchars(t("portfolio_evo_satisfaction")) ?></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <p class="text-uppercase text-muted small mb-3"><?= htmlspecialchars(t("portfolio_gallery_label")) ?></p>
-                    <div class="row g-3">
-                        <div class="col-12">
-                            <figure class="portfolio-shot">
-                                <img src="/assets/images/portfolio/evoevents-01.png" alt="<?= htmlspecialchars(t("portfolio_alt_builder", ["brand" => t("portfolio_evo_title")])) ?>">
-                                <figcaption><?= htmlspecialchars(t("portfolio_caption_builder")) ?></figcaption>
-                            </figure>
-                        </div>
-                        <div class="col-6">
-                            <figure class="portfolio-shot">
-                                <img src="/assets/images/portfolio/evoevents-02.png" alt="<?= htmlspecialchars(t("portfolio_alt_timeline", ["brand" => t("portfolio_evo_title")])) ?>">
-                                <figcaption><?= htmlspecialchars(t("portfolio_caption_timeline")) ?></figcaption>
-                            </figure>
-                        </div>
-                        <div class="col-6">
-                            <figure class="portfolio-shot">
-                                <img src="/assets/images/portfolio/evoevents-03.png" alt="<?= htmlspecialchars(t("portfolio_alt_overview", ["brand" => t("portfolio_evo_title")])) ?>">
-                                <figcaption><?= htmlspecialchars(t("portfolio_caption_overview")) ?></figcaption>
-                            </figure>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="estateflow" class="glass-card p-4 p-lg-5 portfolio-detail">
-            <div class="row gy-4 align-items-center">
-                <div class="col-lg-6">
-                    <h3 class="fw-bold mb-3"><?= htmlspecialchars(t("portfolio_estate_title")) ?></h3>
-                    <p class="text-muted mb-4"><?= htmlspecialchars(t("portfolio_estate_summary")) ?></p>
-                    <div class="portfolio-meta">
-                        <p class="text-uppercase text-muted small mb-2"><?= htmlspecialchars(t("portfolio_build_label")) ?></p>
-                        <p class="text-muted mb-4"><?= htmlspecialchars(t("portfolio_estate_build")) ?></p>
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <p class="text-uppercase text-muted small mb-1"><?= htmlspecialchars(t("portfolio_timeline_label")) ?></p>
-                                <p class="fw-semibold mb-0"><?= htmlspecialchars(t("portfolio_estate_timeline")) ?></p>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="text-uppercase text-muted small mb-1"><?= htmlspecialchars(t("portfolio_satisfaction_label")) ?></p>
-                                <p class="fw-semibold mb-0"><?= htmlspecialchars(t("portfolio_estate_satisfaction")) ?></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <p class="text-uppercase text-muted small mb-3"><?= htmlspecialchars(t("portfolio_gallery_label")) ?></p>
-                    <div class="row g-3">
-                        <div class="col-12">
-                            <figure class="portfolio-shot">
-                                <img src="/assets/images/portfolio/estateflow-01.png" alt="<?= htmlspecialchars(t("portfolio_alt_builder", ["brand" => t("portfolio_estate_title")])) ?>">
-                                <figcaption><?= htmlspecialchars(t("portfolio_caption_builder")) ?></figcaption>
-                            </figure>
-                        </div>
-                        <div class="col-6">
-                            <figure class="portfolio-shot">
-                                <img src="/assets/images/portfolio/estateflow-02.png" alt="<?= htmlspecialchars(t("portfolio_alt_timeline", ["brand" => t("portfolio_estate_title")])) ?>">
-                                <figcaption><?= htmlspecialchars(t("portfolio_caption_timeline")) ?></figcaption>
-                            </figure>
-                        </div>
-                        <div class="col-6">
-                            <figure class="portfolio-shot">
-                                <img src="/assets/images/portfolio/estateflow-03.png" alt="<?= htmlspecialchars(t("portfolio_alt_overview", ["brand" => t("portfolio_estate_title")])) ?>">
-                                <figcaption><?= htmlspecialchars(t("portfolio_caption_overview")) ?></figcaption>
-                            </figure>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="portfolio-modal__body">
+            <p class="text-muted mb-3"><?= htmlspecialchars(t("portfolio_preview_message")) ?></p>
+            <a class="btn btn-accent" id="portfolio-preview-link" href="#" target="_blank" rel="noopener">
+                <?= htmlspecialchars(t("portfolio_preview_open")) ?>
+            </a>
         </div>
     </div>
-</section>
+</div>
 
 <section id="contact" class="section-spacing">
     <div class="container">
