@@ -2,13 +2,46 @@
 require_once __DIR__ . "/config.php";
 require_once __DIR__ . "/partials/auth.php";
 require_login();
-require_once __DIR__ . "/../config/db.php";
+
+$envLocalPath = dirname(__DIR__) . "/.env.local";
+if (!getenv("APP_ENV") && file_exists($envLocalPath)) {
+    $lines = file($envLocalPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    if ($lines !== false) {
+        foreach ($lines as $line) {
+            $line = trim($line);
+            if ($line === "" || strpos($line, "#") === 0) {
+                continue;
+            }
+            [$key, $value] = array_pad(explode("=", $line, 2), 2, "");
+            $key = trim($key);
+            $value = trim($value, "\"'");
+            if ($key === "") {
+                continue;
+            }
+            putenv($key . "=" . $value);
+            $_ENV[$key] = $value;
+            $_SERVER[$key] = $value;
+        }
+    }
+}
+
+$isLocal = getenv("APP_ENV") === "local";
 
 $pageTitle = t("page_title_request");
 $success = "";
 $error = "";
 
+if ($isLocal && isset($_GET["success"])) {
+    $success = t("request_success");
+}
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if ($isLocal) {
+        header("Location: /dashboard.php?success=1");
+        exit;
+    }
+
+    $conn = require __DIR__ . "/../config/db.php";
     $title = trim($_POST["title"] ?? "");
     $budget = trim($_POST["budget"] ?? "");
     $timeline = trim($_POST["timeline"] ?? "");

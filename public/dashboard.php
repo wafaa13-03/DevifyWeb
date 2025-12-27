@@ -6,15 +6,59 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 require_once __DIR__ . "/config.php";
 require_once __DIR__ . "/partials/auth.php";
 require_login();
-require_once __DIR__ . "/../config/db.php";
+
+$envLocalPath = dirname(__DIR__) . "/.env.local";
+if (!getenv("APP_ENV") && file_exists($envLocalPath)) {
+    $lines = file($envLocalPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    if ($lines !== false) {
+        foreach ($lines as $line) {
+            $line = trim($line);
+            if ($line === "" || strpos($line, "#") === 0) {
+                continue;
+            }
+            [$key, $value] = array_pad(explode("=", $line, 2), 2, "");
+            $key = trim($key);
+            $value = trim($value, "\"'");
+            if ($key === "") {
+                continue;
+            }
+            putenv($key . "=" . $value);
+            $_ENV[$key] = $value;
+            $_SERVER[$key] = $value;
+        }
+    }
+}
+
+$isLocal = getenv("APP_ENV") === "local";
 
 $pageTitle = t("page_title_dashboard");
 
-$stmt = $conn->prepare("SELECT id, title, budget, timeline, status, created_at FROM project_requests WHERE user_id = ? ORDER BY created_at DESC");
-$stmt->bind_param("i", $_SESSION["user_id"]);
-$stmt->execute();
-$requests = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-$stmt->close();
+$requests = [];
+if (!$isLocal) {
+    $conn = require __DIR__ . "/../config/db.php";
+    $stmt = $conn->prepare("SELECT id, title, budget, timeline, status, created_at FROM project_requests WHERE user_id = ? ORDER BY created_at DESC");
+    $stmt->bind_param("i", $_SESSION["user_id"]);
+    $stmt->execute();
+    $requests = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+} else {
+    $requests = [
+        [
+            "title" => "Website refresh",
+            "budget" => "$2,500",
+            "timeline" => "4-6 weeks",
+            "status" => "Submitted",
+            "created_at" => date("Y-m-d"),
+        ],
+        [
+            "title" => "Product landing page",
+            "budget" => "$1,200",
+            "timeline" => "2-3 weeks",
+            "status" => "In Progress",
+            "created_at" => date("Y-m-d", strtotime("-7 days")),
+        ],
+    ];
+}
 
 $statusLabels = [
     "Submitted" => t("status_submitted"),
