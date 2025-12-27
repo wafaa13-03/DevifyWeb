@@ -107,4 +107,40 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+  const contactForm = document.querySelector("#contact form");
+  if (contactForm) {
+    const statusEl = contactForm.querySelector(".contact-status");
+    const successMessage = contactForm.getAttribute("data-success-message") || "Thanks! Your message has been sent.";
+    const errorMessage = contactForm.getAttribute("data-error-message") || "Something went wrong. Please try again.";
+
+    contactForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (statusEl) {
+        statusEl.textContent = "";
+      }
+
+      const formData = new FormData(contactForm);
+      fetch(contactForm.action, {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+      })
+        .then((response) => {
+          if (response.ok) {
+            contactForm.reset();
+            if (statusEl) {
+              statusEl.textContent = successMessage;
+            }
+          } else {
+            throw new Error("Formspree error");
+          }
+        })
+        .catch(() => {
+          if (statusEl) {
+            statusEl.textContent = errorMessage;
+          }
+        });
+    });
+  }
 });

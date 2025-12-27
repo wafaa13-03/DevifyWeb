@@ -192,22 +192,26 @@ require_once __DIR__ . "/partials/header.php";
             </div>
             <div class="col-lg-7">
                 <div class="glass-card p-4 p-lg-5">
-                    <form>
+                    <form action="https://formspree.io/f/xjgvwqrj" method="POST" data-captcha="false" data-success-message="<?= htmlspecialchars(t("contact_success")) ?>" data-error-message="<?= htmlspecialchars(t("contact_error")) ?>">
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label class="form-label"><?= htmlspecialchars(t("contact_name_label")) ?></label>
-                                <input class="form-control" name="contact_name" type="text" placeholder="<?= htmlspecialchars(t("contact_name_placeholder")) ?>" required>
+                                <input class="form-control" name="name" type="text" placeholder="<?= htmlspecialchars(t("contact_name_placeholder")) ?>" required>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label"><?= htmlspecialchars(t("contact_email_label")) ?></label>
-                                <input class="form-control" name="contact_email" type="email" placeholder="<?= htmlspecialchars(t("contact_email_placeholder")) ?>" required>
+                                <input class="form-control" name="email" type="email" placeholder="<?= htmlspecialchars(t("contact_email_placeholder")) ?>" required>
                             </div>
                             <div class="col-12">
                                 <label class="form-label"><?= htmlspecialchars(t("contact_message_label")) ?></label>
-                                <textarea class="form-control" name="contact_message" rows="5" placeholder="<?= htmlspecialchars(t("contact_message_placeholder")) ?>" required></textarea>
+                                <textarea class="form-control" name="message" rows="5" placeholder="<?= htmlspecialchars(t("contact_message_placeholder")) ?>" required></textarea>
                             </div>
+                            <input type="hidden" name="_subject" value="New Contact Message - DevifyWeb">
                             <div class="col-12 d-flex">
                                 <button class="btn btn-accent" type="submit"><?= htmlspecialchars(t("contact_submit")) ?></button>
+                            </div>
+                            <div class="col-12">
+                                <div class="contact-status text-muted" role="status" aria-live="polite"></div>
                             </div>
                         </div>
                     </form>
