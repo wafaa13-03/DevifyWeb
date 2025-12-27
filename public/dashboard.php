@@ -44,27 +44,27 @@ if (!$isLocal) {
 } else {
     $requests = [
         [
-            "title" => "Website refresh",
-            "budget" => "$2,500",
-            "timeline" => "4-6 weeks",
+            "title" => t("dashboard_demo_project_1"),
+            "budget" => t("dashboard_demo_budget_1"),
+            "timeline" => t("dashboard_demo_timeline_1"),
             "status" => "Submitted",
-            "created_at" => date("Y-m-d"),
+            "created_at" => "2025-12-27",
         ],
         [
-            "title" => "Product landing page",
-            "budget" => "$1,200",
-            "timeline" => "2-3 weeks",
+            "title" => t("dashboard_demo_project_2"),
+            "budget" => t("dashboard_demo_budget_2"),
+            "timeline" => t("dashboard_demo_timeline_2"),
             "status" => "In Progress",
-            "created_at" => date("Y-m-d", strtotime("-7 days")),
+            "created_at" => "2025-12-20",
         ],
     ];
 }
 
 $statusLabels = [
-    "Submitted" => t("status_submitted"),
-    "Reviewing" => t("status_reviewing"),
-    "In Progress" => t("status_in_progress"),
-    "Completed" => t("status_completed")
+    "submitted" => t("status_submitted"),
+    "reviewing" => t("status_reviewing"),
+    "in progress" => t("status_in_progress"),
+    "completed" => t("status_completed"),
 ];
 
 require_once __DIR__ . "/partials/header.php";
@@ -99,12 +99,24 @@ require_once __DIR__ . "/partials/header.php";
                             </tr>
                         <?php else : ?>
                             <?php foreach ($requests as $request) : ?>
+                                <?php
+                                $budget = $request["budget"];
+                                $timeline = $request["timeline"];
+                                if ($lang === "ar") {
+                                    $budget = localize_digits((string) $budget);
+                                    $timeline = localize_digits((string) $timeline);
+                                }
+                                ?>
                                 <tr>
                                     <td><?= htmlspecialchars($request["title"]) ?></td>
-                                    <td><?= htmlspecialchars($request["budget"]) ?></td>
-                                    <td><?= htmlspecialchars($request["timeline"]) ?></td>
+                                    <td><?= htmlspecialchars($budget) ?></td>
+                                    <td><?= htmlspecialchars($timeline) ?></td>
                                     <td>
-                                        <span class="badge-status"><?= htmlspecialchars($statusLabels[$request["status"]] ?? $request["status"]) ?></span>
+                                        <?php
+                                        $statusKey = strtolower((string) $request["status"]);
+                                        $statusLabel = $statusLabels[$statusKey] ?? $request["status"];
+                                        ?>
+                                        <span class="badge-status"><?= htmlspecialchars($statusLabel) ?></span>
                                     </td>
                                     <td class="text-muted"><?= htmlspecialchars(format_date($request["created_at"])) ?></td>
                                 </tr>

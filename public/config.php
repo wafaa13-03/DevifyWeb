@@ -103,7 +103,7 @@ $translations = [
         "portfolio_build_label" => "How it was made",
         "portfolio_timeline_label" => "Timeline",
         "portfolio_satisfaction_label" => "Client satisfaction",
-        "portfolio_bean_title" => "بين آند برو",
+        "portfolio_bean_title" => "Bean & Brew",
         "portfolio_bean_summary" => "A refined ordering experience that keeps coffee lovers moving from menu to pickup without friction.",
         "portfolio_bean_build" => "We mapped the customer flow, created a high-contrast UI kit, and connected it to a streamlined pickup workflow so baristas could fulfill orders in seconds.",
         "portfolio_bean_timeline" => "6 weeks from discovery to launch",
@@ -167,7 +167,7 @@ $translations = [
         "contact_name_label" => "Name",
         "contact_name_placeholder" => "Your full name",
         "contact_email_label" => "Email",
-        "contact_email_placeholder" => "بريدك@الموقع.كوم",
+        "contact_email_placeholder" => "Enter your email",
         "contact_message_label" => "Message",
         "contact_message_placeholder" => "Share a quick summary of what you need.",
         "contact_submit" => "Send message",
@@ -181,6 +181,14 @@ $translations = [
         "dashboard_table_status" => "Status",
         "dashboard_table_submitted" => "Submitted",
         "dashboard_empty" => "No requests yet. Submit your first project brief.",
+        "dashboard_demo_project_1" => "Website refresh",
+        "dashboard_demo_budget_1" => "$2,500",
+        "dashboard_demo_timeline_1" => "4–6 weeks",
+        "dashboard_demo_date_1" => "2025-12-27",
+        "dashboard_demo_project_2" => "Product landing page",
+        "dashboard_demo_budget_2" => "$1,200",
+        "dashboard_demo_timeline_2" => "2–3 weeks",
+        "dashboard_demo_date_2" => "2025-12-20",
         "admin_login_heading" => "Admin access",
         "admin_login_subheading" => "Manage incoming project requests.",
         "admin_login_button" => "Login",
@@ -189,6 +197,7 @@ $translations = [
         "admin_total_requests" => "{count} total requests",
         "admin_status_updated" => "Status updated.",
         "admin_table_client" => "Client",
+        "admin_table_id" => "ID",
         "admin_table_project" => "Project",
         "admin_table_budget" => "Budget",
         "admin_table_timeline" => "Timeline",
@@ -377,6 +386,14 @@ $translations = [
         "dashboard_table_status" => "الحالة",
         "dashboard_table_submitted" => "تاريخ الإرسال",
         "dashboard_empty" => "لا توجد طلبات بعد. أرسل موجز مشروعك الأول.",
+        "dashboard_demo_project_1" => "تحديث الموقع",
+        "dashboard_demo_budget_1" => "٢٬٥٠٠$",
+        "dashboard_demo_timeline_1" => "٤–٦ أسابيع",
+        "dashboard_demo_date_1" => "2025-12-27",
+        "dashboard_demo_project_2" => "صفحة هبوط المنتج",
+        "dashboard_demo_budget_2" => "١٬٢٠٠$",
+        "dashboard_demo_timeline_2" => "٢–٣ أسابيع",
+        "dashboard_demo_date_2" => "2025-12-20",
         "admin_login_heading" => "دخول الإدارة",
         "admin_login_subheading" => "إدارة طلبات المشاريع الواردة.",
         "admin_login_button" => "تسجيل الدخول",
@@ -385,6 +402,7 @@ $translations = [
         "admin_total_requests" => "{count} إجمالي الطلبات",
         "admin_status_updated" => "تم تحديث الحالة.",
         "admin_table_client" => "العميل",
+        "admin_table_id" => "المعرف",
         "admin_table_project" => "المشروع",
         "admin_table_budget" => "الميزانية",
         "admin_table_timeline" => "الجدول الزمني",
@@ -444,7 +462,7 @@ function format_date(string $dateString): string
             12 => "ديسمبر",
         ];
         $month = $months[(int) $date->format("n")] ?? $date->format("M");
-        return localize_digits($month . " " . $date->format("d, Y"));
+        return localize_digits($date->format("d") . " " . $month . " " . $date->format("Y"));
     }
 
     return $date->format("M d, Y");

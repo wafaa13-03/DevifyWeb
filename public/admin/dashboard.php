@@ -5,6 +5,8 @@ $_SESSION['is_admin'] = true;
 $_SESSION['user_id'] = 1;
 $_SESSION['user_name'] = 'Admin';
 
+require_once __DIR__ . '/../config.php';
+
 // ===== DATABASE CONNECTION =====
 $conn = require __DIR__ . '/../../config/db.php';
 if (!$conn) {
@@ -27,62 +29,67 @@ if ($result) {
         $requests[] = $row;
     }
 }
+
+$statusLabels = [
+    "pending" => t("admin_status_pending"),
+    "in progress" => t("admin_status_in_progress"),
+    "completed" => t("admin_status_completed"),
+];
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?= htmlspecialchars($lang) ?>" dir="<?= htmlspecialchars($dir) ?>">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <title><?= htmlspecialchars(t("page_title_admin_dashboard")) ?></title>
+    <link rel="stylesheet" href="/assets/css/theme.css">
+    <link rel="stylesheet" href="/assets/css/site.css">
 </head>
-<body>
+<body class="<?= $dir === "rtl" ? "rtl" : "" ?>">
 
 <section class="section-spacing">
     <div class="container">
-        <h1 class="fw-bold mb-4">Admin Dashboard</h1>
+        <h1 class="fw-bold mb-4"><?= htmlspecialchars(t("admin_dashboard_heading")) ?></h1>
 
         <div class="glass-card p-4 mb-5">
-            <h3 class="fw-bold mb-3">Client Project Requests</h3>
+            <h3 class="fw-bold mb-3"><?= htmlspecialchars(t("admin_requests_heading")) ?></h3>
 
             <?php if (empty($requests)): ?>
-                <p class="text-muted">No project requests found.</p>
+                <p class="text-muted"><?= htmlspecialchars(t("admin_empty")) ?></p>
             <?php else: ?>
                 <div class="table-responsive">
                     <table class="table align-middle">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Project Type</th>
-                                <th>Description</th>
-                                <th>Status</th>
-                                <th>Created</th>
-                                <th>Update</th>
+                                <th><?= htmlspecialchars(t("admin_table_id")) ?></th>
+                                <th><?= htmlspecialchars(t("admin_table_project_type")) ?></th>
+                                <th><?= htmlspecialchars(t("admin_table_description")) ?></th>
+                                <th><?= htmlspecialchars(t("admin_table_status")) ?></th>
+                                <th><?= htmlspecialchars(t("admin_table_created")) ?></th>
+                                <th><?= htmlspecialchars(t("admin_table_update")) ?></th>
                             </tr>
                         </thead>
                         <tbody>
                         <?php foreach ($requests as $req): ?>
                             <tr>
-                                <td><?= htmlspecialchars($req['id']) ?></td>
+                                <td><?= htmlspecialchars($lang === "ar" ? localize_digits((string) $req['id']) : $req['id']) ?></td>
                                 <td><?= htmlspecialchars($req['project_type']) ?></td>
                                 <td><?= htmlspecialchars($req['description']) ?></td>
                                 <td>
                                     <span class="badge">
-                                        <?= htmlspecialchars($req['status']) ?>
+                                        <?= htmlspecialchars($statusLabels[strtolower((string) $req['status'])] ?? $req['status']) ?>
                                     </span>
                                 </td>
-                                <td><?= htmlspecialchars($req['created_at']) ?></td>
+                                <td><?= htmlspecialchars(format_date($req['created_at'])) ?></td>
                                 <td>
                                     <form method="post" class="d-flex gap-2">
                                         <input type="hidden" name="request_id" value="<?= $req['id'] ?>">
                                         <select name="status" class="form-select form-select-sm">
-                                            <option value="pending">Pending</option>
-                                            <option value="in progress">In Progress</option>
-                                            <option value="completed">Completed</option>
+                                            <option value="pending"><?= htmlspecialchars(t("admin_status_pending")) ?></option>
+                                            <option value="in progress"><?= htmlspecialchars(t("admin_status_in_progress")) ?></option>
+                                            <option value="completed"><?= htmlspecialchars(t("admin_status_completed")) ?></option>
                                         </select>
-                                        <button class="btn btn-accent btn-sm" type="submit">
-                                            Save
-                                        </button>
+                                        <button class="btn btn-accent btn-sm" type="submit"><?= htmlspecialchars(t("admin_save_button")) ?></button>
                                     </form>
                                 </td>
                             </tr>
@@ -94,14 +101,12 @@ if ($result) {
         </div>
 
         <div class="glass-card p-4">
-            <h3 class="fw-bold mb-2">Portfolio Management</h3>
-            <p class="text-muted">
-                (Demo scope) Portfolio CRUD can be extended here.
-            </p>
+            <h3 class="fw-bold mb-2"><?= htmlspecialchars(t("admin_portfolio_heading")) ?></h3>
+            <p class="text-muted"><?= htmlspecialchars(t("admin_portfolio_subheading")) ?></p>
             <ul class="text-muted">
-                <li>Add new portfolio items</li>
-                <li>Edit existing items</li>
-                <li>Delete outdated projects</li>
+                <li><?= htmlspecialchars(t("admin_portfolio_add_button")) ?></li>
+                <li><?= htmlspecialchars(t("admin_portfolio_update_button")) ?></li>
+                <li><?= htmlspecialchars(t("admin_portfolio_delete_button")) ?></li>
             </ul>
         </div>
 
@@ -110,4 +115,3 @@ if ($result) {
 
 </body>
 </html>
-
