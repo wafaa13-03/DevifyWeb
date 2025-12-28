@@ -247,11 +247,7 @@ $currentLang = $lang;
                 <li class="nav-item"><a class="nav-link" href="index.php#portfolio"><?= htmlspecialchars(t("nav_portfolio")) ?></a></li>
                 <li class="nav-item"><a class="nav-link" href="request_project.php"><?= htmlspecialchars(t("nav_request")) ?></a></li>
                 <?php if ($isLoggedIn) : ?>
-                    <?php if ($isAdmin) : ?>
-                        <li class="nav-item"><a class="nav-link" href="admin/dashboard.php"><?= htmlspecialchars(t("nav_admin")) ?></a></li>
-                    <?php else : ?>
-                        <li class="nav-item"><a class="nav-link" href="dashboard.php"><?= htmlspecialchars(t("nav_dashboard")) ?></a></li>
-                    <?php endif; ?>
+                    <li class="nav-item"><a class="nav-link" href="dashboard.php"><?= htmlspecialchars(t("nav_dashboard")) ?></a></li>
                     <li class="nav-item"><a class="nav-link" href="logout.php"><?= htmlspecialchars(t("nav_logout")) ?></a></li>
                 <?php else : ?>
                     <li class="nav-item"><a class="nav-link" href="register.php"><?= htmlspecialchars(t("nav_register")) ?></a></li>
