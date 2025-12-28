@@ -74,6 +74,7 @@ require_once __DIR__ . "/partials/header.php";
     <div class="container">
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
             <div>
+                <h1 class="fw-bold mb-1"><?= htmlspecialchars(t("dashboard_heading")) ?></h1>
                 <h2 class="fw-bold mb-1"><?= htmlspecialchars(t("dashboard_welcome", ["name" => $_SESSION["user_name"] ?? t("dashboard_client_fallback")])) ?></h2>
                 <p class="text-muted mb-0"><?= htmlspecialchars(t("dashboard_subheading")) ?></p>
             </div>

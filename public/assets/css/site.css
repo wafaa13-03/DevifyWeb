@@ -160,3 +160,83 @@
 .modal-open {
   overflow: hidden;
 }
+
+.admin-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: 0;
+}
+
+.admin-table__head th {
+  background: rgba(15, 23, 42, 0.5);
+  color: var(--text-primary);
+  font-weight: 600;
+  border-bottom: 1px solid var(--glass-border);
+  padding: 14px 16px;
+}
+
+.admin-table td {
+  padding: 16px;
+  vertical-align: middle;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.admin-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.admin-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+
+.status-submitted {
+  background: rgba(245, 158, 11, 0.16);
+  color: #fbbf24;
+  border-color: rgba(245, 158, 11, 0.35);
+}
+
+.status-in-progress {
+  background: rgba(59, 130, 246, 0.16);
+  color: #60a5fa;
+  border-color: rgba(59, 130, 246, 0.35);
+}
+
+.status-completed {
+  background: rgba(16, 185, 129, 0.16);
+  color: #34d399;
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
+.status-rejected {
+  background: rgba(239, 68, 68, 0.16);
+  color: #f87171;
+  border-color: rgba(239, 68, 68, 0.35);
+}
+
+html[data-theme="light"] .admin-table__head th {
+  background: rgba(15, 23, 42, 0.06);
+  border-bottom-color: rgba(15, 23, 42, 0.1);
+}
+
+html[data-theme="light"] .admin-table td {
+  border-bottom-color: rgba(15, 23, 42, 0.08);
+}
+
+html[data-theme="light"] .admin-table tbody tr:nth-child(even) {
+  background: rgba(15, 23, 42, 0.03);
+}
+
+html[data-theme="light"] .admin-table tbody tr:hover {
+  background: rgba(15, 23, 42, 0.05);
+}

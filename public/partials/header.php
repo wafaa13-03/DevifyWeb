@@ -1,5 +1,23 @@
 <?php
-require_once __DIR__ . "/../config.php";
+$configPath = __DIR__ . "/../../config/config.php";
+if (file_exists($configPath)) {
+    require_once $configPath;
+}
+if (!isset($lang) || $lang === "") {
+    $lang = "en";
+}
+if (!isset($dir) || $dir === "") {
+    $dir = $lang === "ar" ? "rtl" : "ltr";
+}
+if (!function_exists("t")) {
+    function t(string $key, array $replace = []): string
+    {
+        foreach ($replace as $placeholder => $value) {
+            $key = str_replace("{" . $placeholder . "}", (string) $value, $key);
+        }
+        return $key;
+    }
+}
 
 $pageTitle = $pageTitle ?? t("page_title_default");
 $isLoggedIn = isset($_SESSION["user_id"]);

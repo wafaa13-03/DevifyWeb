@@ -8,9 +8,9 @@ $_SESSION['user_name'] = 'Admin';
 require_once __DIR__ . '/../config.php';
 
 // ===== DATABASE CONNECTION =====
-$conn = require __DIR__ . '/../../config/db.php';
-if (!$conn) {
-    die("Database connection failed");
+require_once __DIR__ . '/../../config/db.php';
+if (!isset($conn) || $conn === null) {
+    die("Database connection failed: connection not initialized.");
 }
 
 // ===== HANDLE STATUS UPDATE =====
@@ -31,9 +31,21 @@ if ($result) {
 }
 
 $statusLabels = [
-    "pending" => t("admin_status_pending"),
-    "in progress" => t("admin_status_in_progress"),
-    "completed" => t("admin_status_completed"),
+    "submitted" => t("status_submitted"),
+    "pending" => t("status_submitted"),
+    "in progress" => t("status_in_progress"),
+    "in_progress" => t("status_in_progress"),
+    "completed" => t("status_completed"),
+    "rejected" => t("status_rejected"),
+];
+
+$statusClasses = [
+    "submitted" => "status-submitted",
+    "pending" => "status-submitted",
+    "in progress" => "status-in-progress",
+    "in_progress" => "status-in-progress",
+    "completed" => "status-completed",
+    "rejected" => "status-rejected",
 ];
 ?>
 
@@ -58,12 +70,13 @@ $statusLabels = [
                 <p class="text-muted"><?= htmlspecialchars(t("admin_empty")) ?></p>
             <?php else: ?>
                 <div class="table-responsive">
-                    <table class="table align-middle">
-                        <thead>
+                    <table class="table align-middle admin-table">
+                        <thead class="admin-table__head">
                             <tr>
                                 <th><?= htmlspecialchars(t("admin_table_id")) ?></th>
-                                <th><?= htmlspecialchars(t("admin_table_project_type")) ?></th>
-                                <th><?= htmlspecialchars(t("admin_table_description")) ?></th>
+                                <th><?= htmlspecialchars(t("admin_table_project")) ?></th>
+                                <th><?= htmlspecialchars(t("admin_table_budget")) ?></th>
+                                <th><?= htmlspecialchars(t("admin_table_timeline")) ?></th>
                                 <th><?= htmlspecialchars(t("admin_table_status")) ?></th>
                                 <th><?= htmlspecialchars(t("admin_table_created")) ?></th>
                                 <th><?= htmlspecialchars(t("admin_table_update")) ?></th>
@@ -71,13 +84,25 @@ $statusLabels = [
                         </thead>
                         <tbody>
                         <?php foreach ($requests as $req): ?>
+                            <?php
+                            $statusKey = strtolower((string) $req['status']);
+                            $statusLabel = $statusLabels[$statusKey] ?? $req['status'];
+                            $statusClass = $statusClasses[$statusKey] ?? "status-submitted";
+                            $budget = $req['budget'] ?? '';
+                            $timeline = $req['timeline'] ?? '';
+                            if ($lang === "ar") {
+                                $budget = localize_digits((string) $budget);
+                                $timeline = localize_digits((string) $timeline);
+                            }
+                            ?>
                             <tr>
                                 <td><?= htmlspecialchars($lang === "ar" ? localize_digits((string) $req['id']) : $req['id']) ?></td>
-                                <td><?= htmlspecialchars($req['project_type']) ?></td>
-                                <td><?= htmlspecialchars($req['description']) ?></td>
+                                <td><?= htmlspecialchars($req['title'] ?? '') ?></td>
+                                <td><?= htmlspecialchars($budget) ?></td>
+                                <td><?= htmlspecialchars($timeline) ?></td>
                                 <td>
-                                    <span class="badge">
-                                        <?= htmlspecialchars($statusLabels[strtolower((string) $req['status'])] ?? $req['status']) ?>
+                                    <span class="status-badge <?= htmlspecialchars($statusClass) ?>">
+                                        <?= htmlspecialchars($statusLabel) ?>
                                     </span>
                                 </td>
                                 <td><?= htmlspecialchars(format_date($req['created_at'])) ?></td>
@@ -85,9 +110,10 @@ $statusLabels = [
                                     <form method="post" class="d-flex gap-2">
                                         <input type="hidden" name="request_id" value="<?= $req['id'] ?>">
                                         <select name="status" class="form-select form-select-sm">
-                                            <option value="pending"><?= htmlspecialchars(t("admin_status_pending")) ?></option>
-                                            <option value="in progress"><?= htmlspecialchars(t("admin_status_in_progress")) ?></option>
-                                            <option value="completed"><?= htmlspecialchars(t("admin_status_completed")) ?></option>
+                                            <option value="Submitted" <?= $statusKey === "pending" || $statusKey === "submitted" ? "selected" : "" ?>><?= htmlspecialchars(t("status_submitted")) ?></option>
+                                            <option value="In Progress" <?= $statusKey === "in progress" || $statusKey === "in_progress" ? "selected" : "" ?>><?= htmlspecialchars(t("status_in_progress")) ?></option>
+                                            <option value="Completed" <?= $statusKey === "completed" ? "selected" : "" ?>><?= htmlspecialchars(t("status_completed")) ?></option>
+                                            <option value="Rejected" <?= $statusKey === "rejected" ? "selected" : "" ?>><?= htmlspecialchars(t("status_rejected")) ?></option>
                                         </select>
                                         <button class="btn btn-accent btn-sm" type="submit"><?= htmlspecialchars(t("admin_save_button")) ?></button>
                                     </form>

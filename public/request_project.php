@@ -47,10 +47,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $timeline = trim($_POST["timeline"] ?? "");
     $details = trim($_POST["details"] ?? "");
 
-    if ($title === "" || $details === "") {
+    if ($title === "" || $budget === "" || $timeline === "" || $details === "") {
         $error = t("request_error");
     } else {
-        $stmt = $conn->prepare("INSERT INTO project_requests (user_id, title, budget, timeline, details, status) VALUES (?, ?, ?, ?, ?, 'Submitted')");
+        $stmt = $conn->prepare("INSERT INTO project_requests (user_id, title, budget, timeline, details, status, created_at) VALUES (?, ?, ?, ?, ?, 'Submitted', NOW())");
         $stmt->bind_param("issss", $_SESSION["user_id"], $title, $budget, $timeline, $details);
         if ($stmt->execute()) {
             $success = t("request_success");
